@@ -1,0 +1,601 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Oxygen&display=swap');
+
+/* Colores logo
+aqua: #00d58d
+naranja: #ff8300
+Color de fondo: #f5eef8 */
+
+/*Empezamos trabajando con los estilos adaptados a versión movil*/
+
+/*Para trabajar con cajas*/
+* { 
+    box-sizing: border-box;
+}
+
+/* estilos de las fuentes dentro del body*/
+body {
+    background-color:  #f5eef8;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    
+}
+
+
+
+/* / / / E S T I L O S   B A S E / / /*/
+
+img{
+    display: block;
+    width: 100%;
+    max-width: 100%;
+}
+
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Oxygfont-family: 'Open Sans', sans-serif;en', sans-serif;
+    margin: 0;
+}
+
+ 
+.container{ /*Limitar el contenido de la pagina*/
+width: 100%;
+margin: auto;
+}
+
+.container--flex{ /*Manejar propiedades de flexbox*/
+display: flex;
+flex-wrap: wrap;/* Para bajar los elementos demasiado grandes o que no quepan*/
+justify-content: space-between;/*Para alinear en el eje horizontal*/
+align-items: center;/*alinear en el eje vertical*/
+}
+
+.column {
+    width: 100%;
+}
+
+/* / / / E S T I L O S  H E A D E R / / /*/
+
+.main-header{ /* para que el header se adapte al ancho de pantalla*/
+    width: 100%;
+}
+
+.logo {/* Estilos del logo principal*/
+    width: 100px;
+    height: 100px;
+    padding: 5px;
+    margin: 0px auto;
+}
+
+/*Estilos del logo de telefono */
+.main-header__ContactInfo__phone{
+    background: #00d58d ;
+    color: white;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+/* Estilos del logo de direccion*/
+.main-header__contactInfo__address{
+    
+    margin: 0 auto;
+    padding: 10px;
+}
+
+/*seleccionar todos los elementos que tengan la clase "icon-
+Osea ajustaremos la posiciones de los icones de dirección y telefono"
+Los iconos se dibujan con el pseudo-elemento before y esto nos sirve para acomodarlos */
+.main-header [class*="icon-"]:before{
+position: relative;
+top: 2px;
+right: 5px;
+}
+
+
+/* / / / E S T I L O S  M E N U / / /*/
+
+/*Estilos menu en general*/
+.main-nav{
+    width: 100;
+    position: relative; /*relative para que el menu se posicione en base al main-nav*/
+    z-index: 2000; /*para poner uno delante del otro*/
+    padding: 10px;
+}
+
+/* eEtilos del icono de menu */
+.icon-menu{
+    display: block;
+    color: white;
+    font-size: 1.5em;
+    border: 2px solid white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    line-height: 42px;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Estilos de los iconos de redes sociales*/
+.social-icon{
+    display: flex;
+    justify-content: space-between;
+  
+}
+
+/* Acomodo de los iconos de redes sociales*/
+.social-icon [class*="icon-"] {
+    color: black;
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3em;
+    width: 35px;
+    height: 35px;
+    background: white;
+    border-radius: 50%;/*para poner iconos redondeados*/
+}
+
+/*quitar el subrayado de los iconos*/
+.social-icon__link {
+    text-decoration: none;
+}
+
+/*acomo del menu cuado demos click*/
+.menu{
+    position: absolute; 
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: rgba(0,0,0,.8); /*para poder agregar transparencia*/
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+    height: 0;
+    overflow: hidden;
+    transition: height .2s linear;
+
+}
+
+.menu__link{ /* Edicon del texto del menu*/
+    display: block;
+    padding: 20px;
+    color:white;
+    text-decoration: none;
+}
+
+.menu__link:hover{/*para cuando pasemos el mouse por encima*/
+    background: #00d58d;
+}
+
+.menu__link--select{/*color de la seccion del menu en donde nos escontremos*/
+    background:rgba(0,213,141,1);
+}
+
+.mostrar{
+    height: 257px;
+}
+
+/* / / / E S T I L O S  B A N N E R / / / */
+
+.banner {/* Acomodar la posición del banner*/
+    margin-top: -54px;
+    position: relative;
+}
+
+/*para oscurecer el banner*/
+.banner:before{
+content: '';
+position: absolute;
+width: 100%;
+height: 100%;
+background: rgba(0,0,0,.55);
+z-index: 1000;
+top: 0;
+
+}
+
+.banner__img{/*Editar propiedades de la imagen */
+    width: 100;
+    height:750px ;
+    object-fit: cover;/*para que la imagen no se distorsione cuando cambiamos la altura*/
+}
+
+/* Editar el texto que está en el centro del banner*/
+.banner__content{
+    width: 90%;
+    color: white;
+    text-align: center;
+    position: absolute;
+    z-index: 1500;
+    top: 50%;
+    left: 50%;
+    transform:  translateX(-50%) translateY(-50%);/*para poder centrar el texto en todo el banner*/
+    font-size: 2.0em;
+    font-weight: bold;
+}
+
+/*Estilos del botón de registro*/
+.btn-registrate{
+    z-index: 3000;
+    font-weight: lighter;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    background: rgba(0,213,141,0.5) ;
+    color: white;
+    padding: 10px;
+    width: 200px;
+    margin: 80px auto;
+    font-size: 1.0em;
+    
+}
+
+/* / / / E S T I L O S  M A I N / / /*/
+
+/* Editar la caja debajo del header*/
+.group--color .container {
+    background: #00d58d;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Editar la fuente de la caja aqua*/
+.main title {
+
+    margin: 15px 0;
+    font-size: 2.0em;
+    font-family: 'Oxygfont-family: 'Open Sans', sans-serif;en', sans-serif, cursive;
+}
+
+.column__title{
+    font-size: 1.4em;
+    text-align: center;
+}
+
+.column__txt{
+    font-size: 1.0em;
+    text-align: center;
+}
+
+/*pseudo elemento/selector nth-child para seleccionar la 2da columna*/
+.main__about__description .column:nth-child(2 ){
+padding: 10px;
+}
+
+/*Estilos del boton contactanos */
+.btn {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    background: #ff8300;
+    color: white;
+    padding: 10px;
+    width: 150px;
+    margin: 10px auto;
+
+}
+
+/* Titulo ofertas de hoy*/
+.group__tittle{
+    font-family: 'Oxygfont-family: 'Open Sans', sans-serif;en', sans-serif, cursive;
+    text-align: center;
+    font-size: 2.0em;
+    margin: 30px;
+  
+}
+
+/* texto en ofertas de hot*/
+.ofertas-de-hoy .column{
+
+margin-bottom: 30px;
+text-align: center;
+
+}
+
+/* imagenes de ofertas de hoy*/
+.ofertas-de-hoy__img{
+    margin: auto;
+    max-width: 350px;
+}
+
+/*titulo del nombre de la flor en ofertas de hoy */
+.ofertas-de-hoy__title{
+    text-align: center;
+    font-size: 1.3em;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* precio de las flores en ofertas de hoy*/
+.ofertas-de-hoy__price {
+    font-size: 1.4em;
+    color: #ff8300;
+    font-weight: bold;
+}
+
+
+/* E S T I L O S  F O O T E R */
+
+
+/*edicion del pie de pagina*/
+.main-footer{
+    background: #222222;
+    color: white;
+    padding: 15px;
+    font-size: 0.6em;
+
+}
+
+
+/* Texto derechos reservados*/
+.copy{
+    text-align: center;
+    margin: auto; 
+    margin-top: 10px;
+}
+
+/*iconos de redes sociales del footer*/
+.main-footer [class*="icon-"]{
+    color:white;
+    text-decoration: none;
+
+
+}
+
+/* acomodo de los iconos de redes sociles del footer*/
+.main-footer [class*="icon-"]:before{
+position: relative;
+top: 2px;
+right: 5px;
+
+}
+
+/* / / / E S T I L O S  R E S P O N S I V E / / /*/
+
+/*Trabajar con una medida de 480px (Movil) */
+
+@media screen and (min-width:480px){
+
+    .logo {/* Estilos del logo principal*/
+        width: 100px;
+        height: 100px;
+        padding: 0px;
+        margin: 0px;
+    }
+
+/* Mandar a la derecha la información de contacto*/
+.main-header__contactInfo{
+ text-align: right;
+}
+
+
+/*quitar el fondo aqua del telefono*/
+.main-header__ContactInfo__phone{
+    background: none ;
+}
+
+.main-header__contactInfo__address{
+     color: white;
+}
+
+
+/*Cambiar el color del fondo del menu */
+.main-nav{
+    background: rgba(0,0,0,.8)
+}
+
+/* Acomodo del banner*/
+.banner {
+    margin-top: -224px;
+    z-index: -1000;
+}
+
+
+
+/*Cambiar tamaño de la foto del banner*/
+.banner__img {
+    height: 800px;
+}
+
+/*Acomodar la posicion del contenido del banner*/
+.banner__content{
+    transform:  translateX(-50%) translateY(0%);
+}
+
+
+/* Cambiar tamañp de fuente del banner*/
+.banner__content{
+font-size: 2.1em;
+}
+
+/*Separar el margenes entre el main y footer*/
+.main {
+    padding-bottom: 10px;
+}
+/*Acomodamos el texto arriba del boton contactanos*/
+.main__about__description .column:nth-child(2 ){
+    padding: 20px;
+    font-size: .8em;
+    }
+
+/* Separar un poco mas el boton de contactanos del texto*/    
+.main__about__description .btn{
+    margin-top: 30px;
+}
+
+/*Contorno de las ofertas de hoy */
+.ofertas-de-hoy .column{
+    border: 3px solid #00d58d;
+    padding: 3px;
+}
+
+/*Cambiar el tamaño de las imagenes y evitar que se deformen*/
+.ofertas-de-hoy__img{
+
+    height: 300px;
+    object-fit: cover;
+
+}
+
+
+/* Para dividir las columnas en 2*/
+.column--50{
+    width: 50%;
+}
+
+/* Para dividir las columnas de las ofertas del dia en 2*/
+.column--50-25{
+    width: 49%
+}
+
+.column--33{
+    width: 31%;
+}
+
+
+}
+
+
+/*Alinear los textos del footer*/
+.main-footer .container--flex{
+    align-items: flex-start;
+}
+
+/*Trabajar con una medida de 768px  */
+@media screen and (min-width:768px){
+
+    /*cambiar tamaño de fuente del titulo de la caja aqua*/ 
+.main__title{
+    font-size: 2.0em;
+    
+}
+
+/*Margen entre caja verde y siguiente seccion*/
+.main__about__description{
+    margin-top: 40px;
+}
+
+/*Cambiar fuente de Texto descriptivo en contactanos*/
+.main__about__description .column--50:nth-child(2){
+    font-size: 1em;
+}
+
+/*Cambiar interlineado del texto de contactanos*/
+.main__about__description .column--50:nth-child(2) .column__txt{
+    line-height: 35px;
+}
+
+.column--50-25{
+    width: 24%;
+}
+
+}
+
+/*Trabajar con una medida de 1024px Escritorio */
+@media screen and (min-width:1024px){
+
+
+    /*Para limitar el tamaño del container y aparezcan los bordes*/
+    .container{
+        width: 920px;
+    }
+
+
+     
+    .logo {/* Estilos del logo principal*/
+        width: 100px;
+        height: 100px;
+        padding: 0px;
+        margin: 0px;
+    }
+    
+    /*Cambiar los iconos de redes sociales del heade*/
+.main-header__ContactInfo__phone, .main-header__contactInfo__address{
+    padding-right: 0;
+    font-size: 1.0em;
+}
+
+/*Cambiar contorno del nav del menu*/
+.main-nav{
+    padding: 0px;
+}
+
+/*Cambiar tamaño fuente del banner*/
+.banner__content{
+    font-size: 2.4em;
+}
+
+/*Cambiar tamaño de la foto del banner*/
+.banner__img {
+    height: 900px;
+}
+
+
+/*Ocultar el icono de menu*/
+.icon-menu {
+    display: none;
+}
+
+/*Hacer que las opciones de menu aparezcan*/
+.menu{
+    position: static;
+    display: flex; /*Para que todos esten una alado de la otra*/
+    height: auto;
+    width: auto;
+
+}
+
+.menu__link{
+    padding: 15px;
+}
+
+/*Cambiar las propiedades de la caja aqua*/
+.group--color .container{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 30px;
+}
+
+/*Cambiar tamaño del titulo caja aqua */
+.main__title{
+    font-size: 2.5em;
+}
+
+/*Modificar imagen de la seccion de contactanos*/
+.main__about__description .column--50:nth-child(1) .imgcontacto{
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+/*Cambiar interlineado del texto de contactanos*/
+.main__about__description .column--50:nth-child(2) .column__txt{
+    line-height: 50px;
+}
+
+/*Cambiar fuentes titulos de ofertas de hoy*/
+.ofertas-de-hoy__title{
+    font-size: 1.5em;
+}
+
+/*Cambiar fuentes prcios de ofertas de hoy*/
+.ofertas-de-hoy__price{
+    font-size: 1.9em;
+}
+
+/*Contorno de las ofertas de hoy */
+.ofertas-de-hoy .column{
+    border: 5px solid #00d58d;
+    padding: 0px;
+}
+
+/*Cambiar el espaciado del footer*/
+.main-footer{
+    padding: 25px;
+}
+
+}
+

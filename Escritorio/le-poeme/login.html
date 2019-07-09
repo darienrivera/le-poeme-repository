@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Iniciar sesión</title>
+    <!--vincular a los estilos css-->
+    <link rel = "stylesheet" href="css/estilos.css">
+    <link rel = "stylesheet" href="styles.css">
+    <link rel = "stylesheet" href="css/estilos-registro.css">
+</head>
+<body >
+    <!--H E A D E R-->
+   <header class="header">
+       <header class="main-header">
+           <div class="container container--flex">
+               <div  class="logo-container column column--50">
+                   <img  src="img/lepoemelogopng2.png" alt="" class="logo">
+                </div>
+                <div class="main-header__contactInfo column column--50">
+                    <p class="main-header__ContactInfo__phone">
+                    <span class="icon-phone">614-2547-620</span></p>
+                <p class="main-header__contactInfo__address">
+                <span class="icon-location-arrow">Pekin y 24 #1906, Chihuahua</span>
+                </p>  
+                </div>
+           </div>
+       </header>
+       <!--M E N U-->
+       <nav class="main-nav">
+           <div class="container container--flex">
+               <span class="icon-menu" id="btnmenu"></span>
+               <ul class="menu" id="menu">
+                   <li class="menu__item"><a href="index.html" class="menu__link ">Inicio</a></li>
+                   <li class="menu__item"><a href="arreglos.html" class="menu__link">Arreglos</a></li>
+                   <li class="menu__item"><a href="" class="menu__link">Nosotros</a></li>
+                   <li class="menu__item"><a href="login.html" class="menu__link menu__link--select" >Iniciar Sesión</a></li>
+                   <li class="menu__item"><a href="registro.html" class="menu__link">Registrarse</a></li>
+                </ul>
+               <div class="social-icon">
+                   <a href="" class="social-icon__link"><span class="icon-facebook"></span></a>
+                   <a href="" class="social-icon__link"><span class="icon-instagram"></span></a>
+                   
+               </div>
+           </div>
+       </nav>
+    <!-- B A N N E R -->
+    <section class="banner">
+        <img src="img/flowersbg.jpg" alt="" class="banner__img">
+
+         <!-- L O G I N --> 
+        
+        <div class="banner__content2">
+
+            <form action="login.php" method="POST" class="form-registro"><!--En el action se mete el archivo donde se van a procesar y registrar los usuarios-->
+ 
+            <h2 class="form-titulo">Bienvenido</h2>
+            <div class="contenedor--inputs">
+                <img class="img-login" src="img/user.png" alt="">
+                <input type="email" name="correo" placeholder="Correo Electronico" class="input-registro" required>
+                <img class="img-login" src="img/pass.png" alt="">
+                <input type="password" name="contrasena" placeholder="Contraseña" class="input-registro" required>
+                
+                <input type="submit" value="Entrar" class="btn-registrar" required>
+                <p class="form__link">¿No estás registrado? <a href="registro.html">Click aqui</a></p>
+            </div>
+        </form> 
+            
+        </div>
+        
+    </section>
+
+  
+
+<!--Pie de pagina-->
+    <footer class="main-footer">
+            <div class="container container--flex">
+                <div class="colum column--33">
+                    <h2 class="column__title">Desarrollado por</h2>
+                    <p class="column__txt">JSD Corp</p>
+                    
+                </div>
+                <div class="colum column--33">
+                    <h2 class="column__title">¿Dónde nos ubicamos?</h2>
+                    <p class="column__txt">Pekin y 24 #1906, Chihuahua</p>
+                    <p class="column__txt">Tel: 614-2547-620</p>
+                    <p class="column__txt">lepoeme@contacto.com</p>
+                </div>
+                <div class="colum column--33">
+                    <h2 class="column__title">Conecta con nosotros</h2>
+                    <p class="column__txt"><a href="" class="icon-instagram">Instagram</a></p>
+                    <p class="column__txt"><a href="" class="icon-facebook">Facebook</a></p>
+                </div>
+                <p class="copy"> ® 2019 JSD Corp | Le Poeme | Todos los derechos reservados</p>
+            </div>
+        </footer>
+
+        <script src="js/menu.js"></script>
+
+</body

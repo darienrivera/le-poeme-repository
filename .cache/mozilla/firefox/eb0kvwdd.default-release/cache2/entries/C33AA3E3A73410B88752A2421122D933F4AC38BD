@@ -1,0 +1,2159 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="a__aufbau" x="0px" y="0px" style="enable-background:new 0 0 212 28" version="1.1" viewBox="0 0 212 28" xml:space="preserve" width="212" height="40">
+    <style>
+ @-webkit-keyframes kf_r2_black__aufbau {
+
+
+     63.99% {
+         opacity: 0;
+     }
+
+     64% {
+         opacity: 1;
+     }
+
+     0% {
+        opacity: 0;
+
+     }
+
+     100% {
+        opacity: 1;
+
+     }
+ }
+
+ @keyframes kf_r2_black__aufbau {
+     63.99% {
+         opacity: 0;
+     }
+
+     64% {
+         opacity: 1;
+     }
+
+     0% {
+     	opacity: 0;
+
+     }
+
+     100% {
+     	opacity: 1;
+
+     }
+ }
+
+ @-webkit-keyframes kf_r2_blue__aufbau {
+     55.99% {
+         opacity: 0;
+     }
+
+     56% {
+         opacity: 1;
+     }
+
+     63.99% {
+         opacity: 1;
+     }
+
+     64% {
+         opacity: 0;
+     }
+
+
+     100% {
+        opacity: 0;
+
+     }
+
+ }
+
+ @keyframes kf_r2_blue__aufbau {
+     55.99% {
+         opacity: 0;
+     }
+
+     56% {
+         opacity: 1;
+     }
+
+     63.99% {
+         opacity: 1;
+     }
+
+     64% {
+         opacity: 0;
+     }
+
+
+     100% {
+     	opacity: 0;
+
+     }
+
+ }
+
+ @-webkit-keyframes kf_e2_black__aufbau {
+     55.99% {
+         opacity: 0;
+     }
+
+     56% {
+         opacity: 1;
+     }
+
+     0% {
+        opacity: 0;
+
+     }
+
+     100% {
+        opacity: 1;
+     }
+ }
+
+
+ @keyframes kf_e2_black__aufbau {
+     55.99% {
+         opacity: 0;
+     }
+
+     56% {
+         opacity: 1;
+     }
+
+     0% {
+        opacity: 0;
+
+     }
+
+     100% {
+        opacity: 1;
+     }
+ }
+
+ @-webkit-keyframes kf_e2_blue__aufbau {
+     51.99% {
+         opacity: 0;
+     }
+
+     52% {
+         opacity: 1;
+     }
+
+     55.99% {
+         opacity: 1;
+     }
+
+     56% {
+         opacity: 0;
+     }
+
+     100% {
+        opacity: 0;
+
+     }
+ }
+
+ @keyframes kf_e2_blue__aufbau {
+     51.99% {
+         opacity: 0;
+     }
+
+     52% {
+         opacity: 1;
+     }
+
+     55.99% {
+         opacity: 1;
+     }
+
+     56% {
+         opacity: 0;
+     }
+
+     100% {
+     	opacity: 0;
+
+     }
+ }
+
+ @-webkit-keyframes kf_g_black__aufbau {
+     51.99% {
+         opacity: 0;
+     }
+
+     52% {
+         opacity: 1;
+     }
+
+     0% {
+        opacity: 0;
+
+     }
+
+     100% {
+        opacity: 1;
+     }
+ }
+
+ @keyframes kf_g_black__aufbau {
+     51.99% {
+         opacity: 0;
+     }
+
+     52% {
+         opacity: 1;
+     }
+
+     0% {
+        opacity: 0;
+
+     }
+
+     100% {
+        opacity: 1;
+     }
+ }
+
+ @-webkit-keyframes kf_g_blue__aufbau {
+     47.99% {
+         opacity: 0;
+     }
+
+     48% {
+         opacity: 1;
+     }
+
+     51.99% {
+         opacity: 1;
+     }
+
+     52% {
+         opacity: 0;
+     }
+
+     100% {
+        opacity: 0;
+
+     }
+ }
+
+ @keyframes kf_g_blue__aufbau {
+     47.99% {
+         opacity: 0;
+     }
+
+     48% {
+         opacity: 1;
+     }
+
+     51.99% {
+         opacity: 1;
+     }
+
+     52% {
+         opacity: 0;
+     }
+
+     100% {
+     	opacity: 0;
+
+     }
+ }
+
+ @-webkit-keyframes kf_n_black__aufbau {
+     47.99% {
+         opacity: 0;
+     }
+
+     48% {
+         opacity: 1;
+     }
+
+     0% {
+        opacity: 0;
+
+     }
+
+     100% {
+        opacity: 1;
+     }
+ }
+
+ @keyframes kf_n_black__aufbau {
+     47.99% {
+         opacity: 0;
+     }
+
+     48% {
+         opacity: 1;
+     }
+
+     0% {
+        opacity: 0;
+
+     }
+
+     100% {
+        opacity: 1;
+     }
+ }
+
+ @-webkit-keyframes kf_n_blue__aufbau {
+     43.99% {
+         opacity: 0;
+     }
+
+     44% {
+         opacity: 1;
+     }
+
+     47.99% {
+         opacity: 1;
+     }
+
+     48% {
+         opacity: 0;
+     }
+
+     100% {
+        opacity: 0;
+
+     }
+ }
+
+ @keyframes kf_n_blue__aufbau {
+     43.99% {
+         opacity: 0;
+     }
+
+     44% {
+         opacity: 1;
+     }
+
+     47.99% {
+         opacity: 1;
+     }
+
+     48% {
+         opacity: 0;
+     }
+
+     100% {
+     	opacity: 0;
+
+     }
+ }
+
+ @-webkit-keyframes kf_i_black__aufbau {
+     43.99% {
+         opacity: 0;
+     }
+
+     44% {
+         opacity: 1;
+     }
+
+     0% {
+        opacity: 0;
+
+     }
+
+     100% {
+        opacity: 1;
+     }
+ }
+
+ @keyframes kf_i_black__aufbau {
+     43.99% {
+         opacity: 0;
+     }
+
+     44% {
+         opacity: 1;
+     }
+
+     0% {
+        opacity: 0;
+
+     }
+
+     100% {
+        opacity: 1;
+     }
+ }
+
+ @-webkit-keyframes kf_i_blue__aufbau {
+     39.99% {
+         opacity: 0;
+     }
+
+     40% {
+         opacity: 1;
+     }
+
+     43.99% {
+         opacity: 1;
+     }
+
+     44% {
+         opacity: 0;
+     }
+
+     100% {
+        opacity: 0;
+
+     }
+ }
+
+ @keyframes kf_i_blue__aufbau {
+     39.99% {
+         opacity: 0;
+     }
+
+     40% {
+         opacity: 1;
+     }
+
+     43.99% {
+         opacity: 1;
+     }
+
+     44% {
+         opacity: 0;
+     }
+
+     100% {
+     	opacity: 0;
+
+     }
+ }
+
+ @-webkit-keyframes kf_r_black__aufbau {
+     39.99% {
+         opacity: 0;
+     }
+
+     40% {
+         opacity: 1;
+     }
+
+     0% {
+        opacity: 0;
+
+     }
+
+     100% {
+        opacity: 1;
+     }
+ }
+
+ @keyframes kf_r_black__aufbau {
+     39.99% {
+         opacity: 0;
+     }
+
+     40% {
+         opacity: 1;
+     }
+
+     0% {
+        opacity: 0;
+
+     }
+
+     100% {
+        opacity: 1;
+     }
+ }
+
+ @-webkit-keyframes kf_r_blue__aufbau {
+     35.99% {
+         opacity: 0;
+     }
+
+     36% {
+         opacity: 1;
+     }
+
+     39.99% {
+         opacity: 1;
+     }
+
+     40% {
+         opacity: 0;
+     }
+
+     100% {
+        opacity: 0;
+
+     }
+ }
+
+ @keyframes kf_r_blue__aufbau {
+     35.99% {
+         opacity: 0;
+     }
+
+     36% {
+         opacity: 1;
+     }
+
+     39.99% {
+         opacity: 1;
+     }
+
+     40% {
+         opacity: 0;
+     }
+
+     100% {
+     	opacity: 0;
+
+     }
+ }
+
+ @-webkit-keyframes kf_p_black__aufbau {
+     35.99% {
+         opacity: 0;
+     }
+
+     36% {
+         opacity: 1;
+     }
+
+     0% {
+     	opacity: 0;
+
+     }
+
+     100% {
+     	opacity: 1;
+     }
+ }
+
+ @keyframes kf_p_black__aufbau {
+     35.99% {
+         opacity: 0;
+     }
+
+     36% {
+         opacity: 1;
+     }
+
+     0% {
+     	opacity: 0;
+
+     }
+
+     100% {
+     	opacity: 1;
+     }
+ }
+
+ @-webkit-keyframes kf_p_blue__aufbau {
+     31.99% {
+         opacity: 0;
+     }
+
+     32% {
+         opacity: 1;
+     }
+
+     35.99% {
+         opacity: 1;
+     }
+
+     36% {
+         opacity: 0;
+     }
+
+     100% {
+        opacity: 0;
+
+     }
+ }
+
+ @keyframes kf_p_blue__aufbau {
+     31.99% {
+         opacity: 0;
+     }
+
+     32% {
+         opacity: 1;
+     }
+
+     35.99% {
+         opacity: 1;
+     }
+
+     36% {
+         opacity: 0;
+     }
+
+     100% {
+     	opacity: 0;
+
+     }
+ }
+
+ @-webkit-keyframes kf_s_black__aufbau {
+     31.99% {
+         opacity: 0;
+     }
+
+     32% {
+         opacity: 1;
+     }
+
+     0% {
+        opacity: 0;
+
+     }
+
+     100% {
+        opacity: 1;
+     }
+ }
+
+ @keyframes kf_s_black__aufbau {
+     31.99% {
+         opacity: 0;
+     }
+
+     32% {
+         opacity: 1;
+     }
+
+     0% {
+     	opacity: 0;
+
+     }
+
+     100% {
+     	opacity: 1;
+     }
+ }
+
+ @-webkit-keyframes kf_s_blue__aufbau {
+     27.99% {
+         opacity: 0;
+     }
+
+     28% {
+         opacity: 1;
+     }
+
+     31.99% {
+         opacity: 1;
+     }
+
+     32% {
+         opacity: 0;
+     }
+
+     100% {
+        opacity: 0;
+
+     }
+ }
+
+ @keyframes kf_s_blue__aufbau {
+     27.99% {
+         opacity: 0;
+     }
+
+     28% {
+         opacity: 1;
+     }
+
+     31.99% {
+         opacity: 1;
+     }
+
+     32% {
+         opacity: 0;
+     }
+
+     100% {
+     	opacity: 0;
+
+     }
+ }
+
+ @-webkit-keyframes kf_l_black__aufbau {
+     23.99% {
+         opacity: 0;
+     }
+
+     24% {
+         opacity: 1;
+     }
+
+     0% {
+        opacity: 0;
+
+     }
+
+     100% {
+        opacity: 1;
+     }
+ }
+
+ @keyframes kf_l_black__aufbau {
+     23.99% {
+         opacity: 0;
+     }
+
+     24% {
+         opacity: 1;
+     }
+
+     0% {
+        opacity: 0;
+
+     }
+
+     100% {
+        opacity: 1;
+     }
+ }
+
+ @-webkit-keyframes kf_l_blue__aufbau {
+     19.99% {
+         opacity: 0;
+     }
+
+     20% {
+         opacity: 1;
+     }
+
+     23.99% {
+         opacity: 1;
+     }
+
+     24% {
+         opacity: 0;
+     }
+
+     100% {
+        opacity: 0;
+
+     }
+ }
+
+ @keyframes kf_l_blue__aufbau {
+     19.99% {
+         opacity: 0;
+     }
+
+     20% {
+         opacity: 1;
+     }
+
+     23.99% {
+         opacity: 1;
+     }
+
+     24% {
+         opacity: 0;
+     }
+
+     100% {
+     	opacity: 0;
+
+     }
+ }
+
+ @-webkit-keyframes kf_e_black__aufbau {
+     19.99% {
+         opacity: 0;
+     }
+
+     20% {
+         opacity: 1;
+     }
+
+     0% {
+        opacity: 0;
+
+     }
+
+     100% {
+        opacity: 1;
+     }
+ }
+
+ @keyframes kf_e_black__aufbau {
+     19.99% {
+         opacity: 0;
+     }
+
+     20% {
+         opacity: 1;
+     }
+
+     0% {
+        opacity: 0;
+
+     }
+
+     100% {
+        opacity: 1;
+     }
+ }
+
+ @-webkit-keyframes kf_e_blue__aufbau {
+     15.99% {
+         opacity: 0;
+     }
+
+     16% {
+         opacity: 1;
+     }
+
+     19.99% {
+         opacity: 1;
+     }
+
+     20% {
+         opacity: 0;
+     }
+
+     100% {
+        opacity: 0;
+
+     }
+ }
+
+ @keyframes kf_e_blue__aufbau {
+     15.99% {
+         opacity: 0;
+     }
+
+     16% {
+         opacity: 1;
+     }
+
+     19.99% {
+         opacity: 1;
+     }
+
+     20% {
+         opacity: 0;
+     }
+
+     100% {
+        opacity: 0;
+
+     }
+ }
+
+ @-webkit-keyframes kf_x_black__aufbau {
+     15.99% {
+         opacity: 0;
+     }
+
+     16% {
+         opacity: 1;
+     }
+
+     0% {
+        opacity: 0;
+
+     }
+
+     100% {
+        opacity: 1;
+     }
+ }
+
+ @keyframes kf_x_black__aufbau {
+     15.99% {
+         opacity: 0;
+     }
+
+     16% {
+         opacity: 1;
+     }
+
+     0% {
+     	opacity: 0;
+
+     }
+
+     100% {
+     	opacity: 1;
+     }
+ }
+
+ @-webkit-keyframes kf_x_blue__aufbau {
+     11.99% {
+         opacity: 0;
+     }
+
+     12% {
+         opacity: 1;
+     }
+
+     15.99% {
+         opacity: 1;
+     }
+
+     16% {
+         opacity: 0;
+     }
+
+     100% {
+        opacity: 0;
+
+     }
+ }
+
+ @keyframes kf_x_blue__aufbau {
+     11.99% {
+         opacity: 0;
+     }
+
+     12% {
+         opacity: 1;
+     }
+
+     15.99% {
+         opacity: 1;
+     }
+
+     16% {
+         opacity: 0;
+     }
+
+     100% {
+     	opacity: 0;
+
+     }
+ }
+
+ @-webkit-keyframes kf_line_15__aufbau {
+
+     100% {
+         opacity: 0;
+     }
+ }
+
+ @keyframes kf_line_15__aufbau {
+
+     100% {
+         opacity: 0;
+     }
+ }
+
+ @-webkit-keyframes kf_line_14__aufbau {
+
+     55.99% {
+         opacity: 0;
+     }
+
+     56% {
+         opacity: 1;
+     }
+
+     0% {
+         opacity: 0;
+     }
+
+     100% {
+         opacity: 1;
+     }
+ }
+
+ @keyframes kf_line_14__aufbau {
+
+     55.99% {
+         opacity: 0;
+     }
+
+     56% {
+         opacity: 1;
+     }
+
+     0% {
+         opacity: 0;
+     }
+
+     100% {
+         opacity: 1;
+     }
+ }
+
+ @-webkit-keyframes kf_line_13__aufbau {
+
+     51.99% {
+         opacity: 0;
+     }
+
+     52% {
+         opacity: 1;
+     }
+
+     55.99% {
+         opacity: 1;
+     }
+
+     56% {
+         opacity: 0;
+     }
+
+     100% {
+         opacity: 0;
+     }
+ }
+
+ @keyframes kf_line_13__aufbau {
+
+     51.99% {
+         opacity: 0;
+     }
+
+     52% {
+         opacity: 1;
+     }
+
+	 55.99% {
+         opacity: 1;
+     }
+
+     56% {
+         opacity: 0;
+     }
+
+     100% {
+         opacity: 0;
+     }
+ }
+
+ @-webkit-keyframes kf_line_12__aufbau {
+
+     47.99% {
+         opacity: 0;
+     }
+
+     48% {
+         opacity: 1;
+     }
+
+     51.99% {
+         opacity: 1;
+     }
+
+     52% {
+         opacity: 0;
+     }
+
+     100% {
+         opacity: 0;
+     }
+ }
+
+ @keyframes kf_line_12__aufbau {
+
+     47.99% {
+         opacity: 0;
+     }
+
+     48% {
+         opacity: 1;
+     }
+
+	 51.99% {
+         opacity: 1;
+     }
+
+     52% {
+         opacity: 0;
+     }
+
+     100% {
+         opacity: 0;
+     }
+ }
+
+ @-webkit-keyframes kf_line_11__aufbau {
+
+     43.99% {
+         opacity: 0;
+     }
+
+     44% {
+         opacity: 1;
+     }
+
+     47.99% {
+         opacity: 1;
+     }
+
+     48% {
+         opacity: 0;
+     }
+
+     100% {
+         opacity: 0;
+     }
+ }
+
+ @keyframes kf_line_11__aufbau {
+
+     43.99% {
+         opacity: 0;
+     }
+
+     44% {
+         opacity: 1;
+     }
+
+	 47.99% {
+         opacity: 1;
+     }
+
+     48% {
+         opacity: 0;
+     }
+
+     100% {
+         opacity: 0;
+     }
+ }
+
+ @-webkit-keyframes kf_line_10__aufbau {
+
+     39.99% {
+         opacity: 0;
+     }
+
+     40% {
+         opacity: 1;
+     }
+
+     43.99% {
+         opacity: 1;
+     }
+
+     44% {
+         opacity: 0;
+     }
+
+     100% {
+         opacity: 0;
+     }
+ }
+
+ @keyframes kf_line_10__aufbau {
+
+     39.99% {
+         opacity: 0;
+     }
+
+     40% {
+         opacity: 1;
+     }
+
+	 43.99% {
+         opacity: 1;
+     }
+
+     44% {
+         opacity: 0;
+     }
+
+     100% {
+         opacity: 0;
+     }
+ }
+
+ @-webkit-keyframes kf_line_9__aufbau {
+
+     35.99% {
+         opacity: 0;
+     }
+
+     36% {
+         opacity: 1;
+     }
+
+     39.99% {
+         opacity: 1;
+     }
+
+     40% {
+         opacity: 0;
+     }
+
+     100% {
+         opacity: 0;
+     }
+ }
+
+ @keyframes kf_line_9__aufbau {
+
+     35.99% {
+         opacity: 0;
+     }
+
+     36% {
+         opacity: 1;
+     }
+
+	 39.99% {
+         opacity: 1;
+     }
+
+     40% {
+         opacity: 0;
+     }
+
+     100% {
+         opacity: 0;
+     }
+ }
+
+ @-webkit-keyframes kf_line_8__aufbau {
+
+     31.99% {
+         opacity: 0;
+     }
+
+     32% {
+         opacity: 1;
+     }
+
+     35.99% {
+         opacity: 1;
+     }
+
+     36% {
+         opacity: 0;
+     }
+
+     100% {
+         opacity: 0;
+     }
+ }
+
+ @keyframes kf_line_8__aufbau {
+
+     31.99% {
+         opacity: 0;
+     }
+
+     32% {
+         opacity: 1;
+     }
+
+	 35.99% {
+         opacity: 1;
+     }
+
+     36% {
+         opacity: 0;
+     }
+
+     100% {
+         opacity: 0;
+     }
+ }
+
+ @-webkit-keyframes kf_line_7__aufbau {
+
+     27.99% {
+         opacity: 0;
+     }
+
+     28% {
+         opacity: 1;
+     }
+
+     31.99% {
+         opacity: 1;
+     }
+
+     32% {
+         opacity: 0;
+     }
+
+     100% {
+         opacity: 0;
+     }
+ }
+
+ @keyframes kf_line_7__aufbau {
+
+     27.99% {
+         opacity: 0;
+     }
+
+     28% {
+         opacity: 1;
+     }
+
+	 31.99% {
+         opacity: 1;
+     }
+
+     32% {
+         opacity: 0;
+     }
+
+     100% {
+         opacity: 0;
+     }
+ }
+
+ @-webkit-keyframes kf_line_6__aufbau {
+
+     23.99% {
+         opacity: 0;
+     }
+
+     24% {
+         opacity: 1;
+     }
+
+     27.99% {
+         opacity: 1;
+     }
+
+     28% {
+         opacity: 0;
+     }
+
+     100% {
+         opacity: 0;
+     }
+ }
+
+ @keyframes kf_line_6__aufbau {
+
+     23.99% {
+         opacity: 0;
+     }
+
+     24% {
+         opacity: 1;
+     }
+
+	 27.99% {
+         opacity: 1;
+     }
+
+     28% {
+         opacity: 0;
+     }
+
+     100% {
+         opacity: 0;
+     }
+ }
+
+ @-webkit-keyframes kf_line_5__aufbau {
+
+     19.99% {
+         opacity: 0;
+     }
+
+     20% {
+         opacity: 1;
+     }
+
+     23.99% {
+         opacity: 1;
+     }
+
+     24% {
+         opacity: 0;
+     }
+
+     100% {
+         opacity: 0;
+     }
+ }
+
+ @keyframes kf_line_5__aufbau {
+
+     19.99% {
+         opacity: 0;
+     }
+
+     20% {
+         opacity: 1;
+     }
+
+	 23.99% {
+         opacity: 1;
+     }
+
+     24% {
+         opacity: 0;
+     }
+
+     100% {
+         opacity: 0;
+     }
+ }
+
+ @-webkit-keyframes kf_line_4__aufbau {
+
+     15.99% {
+         opacity: 0;
+     }
+
+     16% {
+         opacity: 1;
+     }
+
+     19.99% {
+         opacity: 1;
+     }
+
+     20% {
+         opacity: 0;
+     }
+
+     100% {
+         opacity: 0;
+     }
+ }
+
+ @keyframes kf_line_4__aufbau {
+
+     15.99% {
+         opacity: 0;
+     }
+
+     16% {
+         opacity: 1;
+     }
+
+	 19.99% {
+         opacity: 1;
+     }
+
+     20% {
+         opacity: 0;
+     }
+
+     100% {
+         opacity: 0;
+     }
+ }
+
+ @-webkit-keyframes kf_line_3__aufbau {
+
+     11.99% {
+         opacity: 0;
+     }
+
+     12% {
+         opacity: 1;
+     }
+
+     15.99% {
+         opacity: 1;
+     }
+
+     16% {
+         opacity: 0;
+     }
+
+     100% {
+         opacity: 0;
+     }
+ }
+
+ @keyframes kf_line_3__aufbau {
+
+     11.99% {
+         opacity: 0;
+     }
+
+     12% {
+         opacity: 1;
+     }
+
+	 15.99% {
+         opacity: 1;
+     }
+
+     16% {
+         opacity: 0;
+     }
+
+     100% {
+         opacity: 0;
+     }
+ }
+
+
+ @-webkit-keyframes kf_line_2__aufbau {
+
+     100% {
+         opacity: 0;
+     }
+ }
+
+ @keyframes kf_line_2__aufbau {
+
+     100% {
+         opacity: 0;
+     }
+ }
+
+ @-webkit-keyframes kf_line_1__aufbau {
+
+     11.99% {
+         opacity: 1;
+     }
+
+     12% {
+         opacity: 0;
+     }
+
+     100% {
+         opacity: 0;
+     }
+
+     0% {
+         opacity: 1;
+     }
+ }
+
+ @keyframes kf_line_1__aufbau {
+
+     11.99% {
+         opacity: 1;
+     }
+
+     12% {
+         opacity: 0;
+     }
+
+     100% {
+         opacity: 0;
+     }
+
+	 0% {
+         opacity: 1;
+     }
+ }
+
+ #a__aufbau * {
+     -webkit-animation-duration: 1s;
+     animation-duration: 1s;
+     -webkit-animation-iteration-count: 1;
+     animation-iteration-count: 1;
+
+ }
+
+ #x__aufbau {
+     fill: #0000FF;
+ }
+
+ #e__aufbau {
+     fill: #0000FF;
+ }
+
+ #l__aufbau {
+     fill: #0000FF;
+ }
+
+ #s__aufbau {
+     fill: #0000FF;
+ }
+
+ #p__aufbau {
+     fill: #0000FF;
+ }
+
+ #r__aufbau {
+     fill: #0000FF;
+ }
+
+ #i__aufbau {
+     fill: #0000FF;
+ }
+
+ #n__aufbau {
+     fill: #0000FF;
+ }
+
+ #g__aufbau {
+     fill: #0000FF;
+ }
+
+ #e2__aufbau {
+     fill: #0000FF;
+ }
+
+ #r2__aufbau {
+     fill: #0000FF;
+ }
+
+ #line_15__aufbau {
+     fill: #00FFFF;
+ }
+
+ #line_14__aufbau {
+     fill: #0000FF;
+ }
+
+ #line_13__aufbau {
+     fill: #0000FF;
+ }
+
+ #line_12__aufbau {
+     fill: #0000FF;
+ }
+
+ #line_11__aufbau {
+     fill: #0000FF;
+ }
+
+ #line_10__aufbau {
+     fill: #0000FF;
+ }
+
+ #line_9__aufbau {
+     fill: #0000FF;
+ }
+
+ #line_8__aufbau {
+     fill: #0000FF;
+ }
+
+ #line_7__aufbau {
+     fill: #0000FF;
+ }
+
+ #line_6__aufbau{
+     fill: #0000FF;
+ }
+
+ #line_5__aufbau{
+     fill: #0000FF;
+ }
+
+ #line_4__aufbau{
+     fill: #0000FF;
+ }
+
+ #line_3__aufbau{
+     fill: #0000FF;
+ }
+
+ #line_2__aufbau{
+     fill: #00FFFF;
+ }
+
+ #line_1__aufbau{
+     fill: #0000FF;
+ }
+
+ #line_1__aufbau{
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_line_1__aufbau;
+     animation-name: kf_line_1__aufbau;
+
+ }
+
+ #line_2__aufbau{
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_line_2__aufbau;
+     animation-name: kf_line_2__aufbau;
+
+ }
+
+ #line_3__aufbau{
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_line_3__aufbau;
+     animation-name: kf_line_3__aufbau;
+
+ }
+
+ #line_4__aufbau{
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_line_4__aufbau;
+     animation-name: kf_line_4__aufbau;
+
+ }
+
+ #line_5__aufbau{
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_line_5__aufbau;
+     animation-name: kf_line_5__aufbau;
+
+ }
+
+ #line_6__aufbau{
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_line_6__aufbau;
+     animation-name: kf_line_6__aufbau;
+
+ }
+
+ #line_7__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_line_7__aufbau;
+     animation-name: kf_line_7__aufbau;
+
+ }
+
+ #line_8__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_line_8__aufbau;
+     animation-name: kf_line_8__aufbau;
+
+ }
+
+ #line_9__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_line_9__aufbau;
+     animation-name: kf_line_9__aufbau;
+
+ }
+
+ #line_10__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_line_10__aufbau;
+     animation-name: kf_line_10__aufbau;
+;
+ }
+
+ #line_11__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_line_11__aufbau;
+     animation-name: kf_line_11__aufbau;
+;
+ }
+
+ #line_12__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_line_12__aufbau;
+     animation-name: kf_line_12__aufbau;
+
+ }
+
+ #line_13__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_line_13__aufbau;
+     animation-name: kf_line_13__aufbau;
+
+ }
+
+ #line_14__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_line_14__aufbau;
+     animation-name: kf_line_14__aufbau;
+
+ }
+
+ #line_15__aufbau{
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_line_15__aufbau;
+     animation-name: kf_line_15__aufbau;
+
+ }
+
+ #x_blue__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_x_blue__aufbau;
+     animation-name: kf_x_blue__aufbau;
+
+ }
+
+ #x_black__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_x_black__aufbau;
+     animation-name: kf_x_black__aufbau;
+
+ }
+
+ #e_blue__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_e_blue__aufbau;
+     animation-name: kf_e_blue__aufbau;
+
+ }
+
+ #e_black__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_e_black__aufbau;
+     animation-name: kf_e_black__aufbau;
+
+ }
+
+ #l_blue__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_l_blue__aufbau;
+     animation-name: kf_l_blue__aufbau;
+
+ }
+
+ #l_black__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_l_black__aufbau;
+     animation-name: kf_l_black__aufbau;
+
+ }
+
+ #s_blue__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_s_blue__aufbau;
+     animation-name: kf_s_blue__aufbau;
+
+ }
+
+ #s_black__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_s_black__aufbau;
+     animation-name: kf_s_black__aufbau;
+
+ }
+
+ #p_blue__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_p_blue__aufbau;
+     animation-name: kf_p_blue__aufbau;
+
+ }
+
+ #p_black__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_p_black__aufbau;
+     animation-name: kf_p_black__aufbau;
+
+ }
+
+ #r_blue__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_r_blue__aufbau;
+     animation-name: kf_r_blue__aufbau;
+ }
+
+ #r_black__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_r_black__aufbau;
+     animation-name: kf_r_black__aufbau;
+
+ }
+
+ #i_blue__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_i_blue__aufbau;
+     animation-name: kf_i_blue__aufbau;
+
+ }
+
+ #i_black__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_i_black__aufbau;
+     animation-name: kf_i_black__aufbau;
+1);
+ }
+
+ #n_blue__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_n_blue__aufbau;
+     animation-name: kf_n_blue__aufbau;
+;
+ }
+
+ #n_black__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_n_black__aufbau;
+     animation-name: kf_n_black__aufbau;
+
+ }
+
+ #g_blue__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_g_blue__aufbau;
+     animation-name: kf_g_blue__aufbau;
+
+ }
+
+ #g_black__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_g_black__aufbau;
+     animation-name: kf_g_black__aufbau;
+;
+ }
+
+ #e2_blue__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_e2_blue__aufbau;
+     animation-name: kf_e2_blue__aufbau;
+
+ }
+
+ #e2_black__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_e2_black__aufbau;
+     animation-name: kf_e2_black__aufbau;
+
+ }
+
+ #r2_blue__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_r2_blue__aufbau;
+     animation-name: kf_r2_blue__aufbau;
+
+ }
+
+ #r2_black__aufbau {
+     -webkit-animation-fill-mode: forwards;
+     animation-fill-mode: forwards;
+     opacity: 0;
+     -webkit-animation-name: kf_r2_black__aufbau;
+     animation-name: kf_r2_black__aufbau;
+
+ }
+    </style>
+    <g id="a__aufbau">
+        <path id="a__aufbau" d="M12.42,14.31c0-2.02-1.48-3.55-3.49-3.55c-2.02,0-3.49,1.52-3.49,3.55c0,2.04,1.48,3.56,3.49,3.56
+		C10.94,17.87,12.42,16.35,12.42,14.31z M17.53,6.5v15.6h-4.15l-0.46-1.1c-1.28,1.04-2.9,1.63-4.71,1.63
+		c-4.77,0-8.18-3.48-8.18-8.33c0-4.83,3.41-8.27,8.18-8.27c1.84,0,3.48,0.61,4.77,1.68l0.55-1.21H17.53z"></path>
+    </g>
+    <g id="x_blue__aufbau">
+        <polygon id="x_blue__aufbau" points="36.09,22.11 30.91,13.88 35.74,6.51 29.89,6.51 27.54,10.44 25.28,6.51 19.35,6.51 24.15,14.02
+		18.97,22.11 24.91,22.11 27.52,17.49 30.09,22.11 	"></polygon>
+    </g>
+    <g id="x_black__aufbau">
+        <polygon id="x_black__aufbau" points="36.09,22.11 30.91,13.88 35.74,6.51 29.89,6.51 27.54,10.44 25.28,6.51 19.35,6.51 24.15,14.02 18.97,22.11
+		24.91,22.11 27.52,17.49 30.09,22.11 	"></polygon>
+    </g>
+    <g id="e_blue__aufbau">
+        <path id="e_blue__aufbau" d="M41.11,12.61h6.31c-0.47-1.56-1.6-2.4-3.22-2.4C42.63,10.21,41.55,11.06,41.11,12.61z M52.6,15.59H41.02
+		c0.35,1.79,1.49,2.71,3.18,2.71c1.26,0,2.3-0.55,2.82-1.46h5.35c-1.1,3.56-4.25,5.79-8.17,5.79c-4.87,0-8.47-3.56-8.47-8.32
+		c0-4.78,3.58-8.3,8.47-8.3c5.03,0,8.51,3.59,8.51,8.16C52.71,14.63,52.67,15.11,52.6,15.59z"></path>
+    </g>
+    <g id="e_black__aufbau">
+        <path id="e_black__aufbau" d="M41.11,12.61h6.31c-0.47-1.56-1.6-2.4-3.22-2.4C42.63,10.21,41.55,11.06,41.11,12.61z M52.6,15.59H41.02
+		c0.35,1.79,1.49,2.71,3.18,2.71c1.26,0,2.3-0.55,2.82-1.46h5.35c-1.1,3.56-4.25,5.79-8.17,5.79c-4.87,0-8.47-3.56-8.47-8.32
+		c0-4.78,3.58-8.3,8.47-8.3c5.03,0,8.51,3.59,8.51,8.16C52.71,14.63,52.67,15.11,52.6,15.59z"></path>
+    </g>
+    <g id="l_black__aufbau">
+        <rect id="l_black__aufbau" width="5.37" height="21.23" x="55.08" y="0.88"></rect>
+    </g>
+    <g id="l_blue__aufbau">
+        <rect id="l_blue__aufbau" width="5.37" height="21.23" x="55.08" y="0.88"></rect>
+    </g>
+    <g id="s_blue__aufbau">
+        <path id="s_blue__aufbau" d="M75.78,22.62c4.15,0,6.9-2.13,6.9-5.39c0-3.96-3.28-4.47-5.74-4.91c-1.48-0.26-2.68-0.47-2.68-1.36
+		c0-0.72,0.58-1.15,1.44-1.15c0.97,0,1.64,0.46,1.64,1.46h5.03C82.32,8.11,79.74,6,75.77,6c-4,0-6.66,2.02-6.66,5.15
+		c0,3.78,3.21,4.51,5.62,4.91c1.5,0.25,2.68,0.5,2.68,1.4c0,0.81-0.75,1.21-1.53,1.21c-1.02,0-1.81-0.53-1.81-1.67H68.9
+		C68.95,20.38,71.53,22.62,75.78,22.62z"></path>
+    </g>
+    <g id="s_black__aufbau">
+        <path id="s_black__aufbau" d="M75.78,22.62c4.15,0,6.9-2.13,6.9-5.39c0-3.96-3.28-4.47-5.74-4.91c-1.48-0.26-2.68-0.47-2.68-1.36
+		c0-0.72,0.58-1.15,1.44-1.15c0.97,0,1.64,0.46,1.64,1.46h5.03C82.32,8.11,79.74,6,75.77,6c-4,0-6.66,2.02-6.66,5.15
+		c0,3.78,3.21,4.51,5.62,4.91c1.5,0.25,2.68,0.5,2.68,1.4c0,0.81-0.75,1.21-1.53,1.21c-1.02,0-1.81-0.53-1.81-1.67H68.9
+		C68.95,20.38,71.53,22.62,75.78,22.62z"></path>
+    </g>
+    <g id="p_blue__aufbau">
+        <path id="p_blue__aufbau" d="M96.86,14.31c0-2.05-1.48-3.57-3.49-3.57c-2.01,0-3.49,1.52-3.49,3.57c0,2.05,1.48,3.57,3.49,3.57
+		C95.37,17.88,96.86,16.36,96.86,14.31z M102.26,14.31c0,4.86-3.41,8.33-8.18,8.33c-1.41,0-2.7-0.37-3.8-1.04v6.14h-5.31V6.51h3.65
+		l0.67,1.24C90.58,6.64,92.23,6,94.08,6C98.85,6,102.26,9.45,102.26,14.31z"></path>
+    </g>
+    <g id="p_black__aufbau">
+        <path id="p_black__aufbau" d="M96.86,14.31c0-2.05-1.48-3.57-3.49-3.57c-2.01,0-3.49,1.52-3.49,3.57c0,2.05,1.48,3.57,3.49,3.57
+		C95.37,17.88,96.86,16.36,96.86,14.31z M102.26,14.31c0,4.86-3.41,8.33-8.18,8.33c-1.41,0-2.7-0.37-3.8-1.04v6.14h-5.31V6.51h3.65
+		l0.67,1.24C90.58,6.64,92.23,6,94.08,6C98.85,6,102.26,9.45,102.26,14.31z"></path>
+    </g>
+    <g id="r_blue__aufbau">
+        <path id="r_blue__aufbau" d="M113.28,6.44c-1.86,0-3.2,0.53-4.3,1.81l-0.84-1.73h-3.6v15.6h5.37v-7.93c0-1.99,0.8-2.82,2.7-2.82h2.08V6.44
+		H113.28z"></path>
+    </g>
+    <g id="r_black__aufbau">
+        <path id="r_black__aufbau" d="M113.28,6.44c-1.86,0-3.2,0.53-4.3,1.81l-0.84-1.73h-3.6v15.6h5.37v-7.93c0-1.99,0.8-2.82,2.7-2.82h2.08V6.44H113.28z"></path>
+    </g>
+    <g id="i_blue__aufbau">
+        <path id="i_blue__aufbau" d="M116.75,6.51h5.37v15.6h-5.37V6.51z M116.79,0h5.29v4.56h-5.29V0z"></path>
+    </g>
+    <g id="i_black__aufbau">
+        <path id="i_black__aufbau" d="M116.75,6.51h5.37v15.6h-5.37V6.51z M116.79,0h5.29v4.56h-5.29V0z"></path>
+    </g>
+    <g id="n_blue__aufbau">
+        <path id="n_blue__aufbau" d="M134.84,6.05c-2.02,0-3.75,0.77-4.91,2.07l-0.74-1.61h-3.77v15.6h5.37v-8.33c0-1.99,0.96-3.16,2.64-3.16
+		c1.35,0,2.04,0.9,2.04,2.72v8.77h5.37V12.6C140.85,8.63,138.47,6.05,134.84,6.05z"></path>
+    </g>
+    <g id="n_black__aufbau">
+        <path id="n_black__aufbau" d="M134.84,6.05c-2.02,0-3.75,0.77-4.91,2.07l-0.74-1.61h-3.77v15.6h5.37v-8.33c0-1.99,0.96-3.16,2.64-3.16
+		c1.35,0,2.04,0.9,2.04,2.72v8.77h5.37V12.6C140.85,8.63,138.47,6.05,134.84,6.05z"></path>
+    </g>
+    <g id="g_blue__aufbau">
+        <path id="g_blue__aufbau" d="M155.06,13.86c0-1.97-1.38-3.4-3.32-3.4c-1.93,0-3.33,1.43-3.33,3.4c0,1.99,1.38,3.42,3.33,3.42
+		C153.67,17.28,155.06,15.85,155.06,13.86z M160.09,6.51v13.87c0,4.9-3.21,7.94-8.36,7.94c-4.43,0-7.52-2.23-8.24-5.93h5.18
+		c0.37,1.04,1.7,1.6,3.01,1.6c1.8,0,3.25-1.14,3.25-3v-0.46c-1.17,0.74-2.56,1.17-4.07,1.17c-4.47,0-7.8-3.33-7.8-7.84
+		c0-4.45,3.32-7.85,7.8-7.85c1.89,0,3.6,0.68,4.92,1.81l0.68-1.31H160.09z"></path>
+    </g>
+    <g id="g_black__aufbau">
+        <path id="g_black__aufbau" d="M155.06,13.86c0-1.97-1.38-3.4-3.32-3.4c-1.93,0-3.33,1.43-3.33,3.4c0,1.99,1.38,3.42,3.33,3.42
+		C153.67,17.28,155.06,15.85,155.06,13.86z M160.09,6.51v13.87c0,4.9-3.21,7.94-8.36,7.94c-4.43,0-7.52-2.23-8.24-5.93h5.18
+		c0.37,1.04,1.7,1.6,3.01,1.6c1.8,0,3.25-1.14,3.25-3v-0.46c-1.17,0.74-2.56,1.17-4.07,1.17c-4.47,0-7.8-3.33-7.8-7.84
+		c0-4.45,3.32-7.85,7.8-7.85c1.89,0,3.6,0.68,4.92,1.81l0.68-1.31H160.09z"></path>
+    </g>
+    <g id="e2_blue__aufbau">
+        <path id="e2_blue__aufbau" d="M167.73,12.61h6.31c-0.47-1.56-1.6-2.4-3.22-2.4C169.26,10.21,168.17,11.06,167.73,12.61z M179.22,15.59
+		h-11.58c0.35,1.79,1.49,2.71,3.19,2.71c1.25,0,2.3-0.55,2.82-1.46h5.35c-1.1,3.56-4.25,5.79-8.17,5.79c-4.87,0-8.47-3.56-8.47-8.32
+		c0-4.78,3.58-8.3,8.47-8.3c5.03,0,8.51,3.59,8.51,8.16C179.33,14.63,179.29,15.11,179.22,15.59z"></path>
+    </g>
+    <g id="e2_black__aufbau">
+        <path id="e2_black__aufbau" d="M167.73,12.61h6.31c-0.47-1.56-1.6-2.4-3.22-2.4C169.26,10.21,168.17,11.06,167.73,12.61z M179.22,15.59h-11.58
+		c0.35,1.79,1.49,2.71,3.19,2.71c1.25,0,2.3-0.55,2.82-1.46h5.35c-1.1,3.56-4.25,5.79-8.17,5.79c-4.87,0-8.47-3.56-8.47-8.32
+		c0-4.78,3.58-8.3,8.47-8.3c5.03,0,8.51,3.59,8.51,8.16C179.33,14.63,179.29,15.11,179.22,15.59z"></path>
+    </g>
+    <g id="r2_blue__aufbau">
+        <path id="r2_blue__aufbau" d="M191.86,6.44v4.92h-2.09c-1.9,0-2.7,0.84-2.7,2.82v7.93h-5.37V6.51h3.6l0.84,1.73c1.1-1.27,2.44-1.81,4.3-1.81
+		H191.86z"></path>
+    </g>
+    <g id="r2_black__aufbau">
+        <path id="r2_black__aufbau" d="M191.86,6.44v4.92h-2.09c-1.9,0-2.7,0.84-2.7,2.82v7.93h-5.37V6.51h3.6l0.84,1.73c1.1-1.27,2.44-1.81,4.3-1.81H191.86z"></path>
+    </g>
+    <g id="line_15__aufbau">
+        <polygon id="line_15__aufbau" points="194.99,22.09 212.6,22.09 212.6,18.14 194.99,18.14 194.99,20.12 194.99,22.09 	"></polygon>
+    </g>
+    <g id="line_14__aufbau">
+        <polygon id="line_14__aufbau" points="194.99,22.09 212.6,22.09 212.6,18.14 194.99,18.14 194.99,20.12 194.99,22.09 	"></polygon>
+    </g>
+    <g id="line_13__aufbau">
+        <polygon id="line_13__aufbau" points="182.11,22.09 199.72,22.09 199.72,18.14 182.11,18.14 182.11,20.12 182.11,22.09 	"></polygon>
+    </g>
+    <g id="line_12__aufbau">
+        <polygon id="line_12__aufbau" points="163.18,22.09 180.79,22.09 180.79,18.14 163.18,18.14 163.18,20.12 163.18,22.09 	"></polygon>
+    </g>
+    <g id="line_11__aufbau">
+        <polygon id="line_11__aufbau" points="143.94,22.09 161.54,22.09 161.54,18.14 143.94,18.14 143.94,20.12 143.94,22.09 	"></polygon>
+    </g>
+    <g id="line_10__aufbau">
+        <polygon id="line_10__aufbau" points="125.17,22.09 142.78,22.09 142.78,18.14 125.17,18.14 125.17,20.12 125.17,22.09 	"></polygon>
+    </g>
+    <g id="line_9__aufbau">
+        <polygon id="line_9__aufbau" points="117.85,22.09 135.46,22.09 135.46,18.14 117.85,18.14 117.85,20.12 117.85,22.09 	"></polygon>
+    </g>
+    <g id="line_8__aufbau">
+        <polygon id="line_8__aufbau" points="105.06,22.09 122.67,22.09 122.67,18.14 105.06,18.14 105.06,20.12 105.06,22.09 	"></polygon>
+    </g>
+    <g id="line_7__aufbau">
+        <polygon id="line_7__aufbau" points="85.42,22.09 103.03,22.09 103.03,18.14 85.42,18.14 85.42,20.12 85.42,22.09 	"></polygon>
+    </g>
+    <g id="line_6__aufbau">
+        <polygon id="line_6__aufbau" points="69,22.09 86.6,22.09 86.6,18.14 69,18.14 69,20.12 69,22.09 	"></polygon>
+    </g>
+    <g id="line_5__aufbau">
+        <polygon id="line_5__aufbau" points="63.54,22.09 81.15,22.09 81.15,18.14 63.54,18.14 63.54,20.12 63.54,22.09 	"></polygon>
+    </g>
+    <g id="line_4__aufbau">
+        <polygon id="line_4__aufbau" points="55.77,22.09 73.38,22.09 73.38,18.14 55.77,18.14 55.77,20.12 55.77,22.09 	"></polygon>
+    </g>
+    <g id="line_3__aufbau">
+        <polygon id="line_3__aufbau" points="39.18,22.09 56.78,22.09 56.78,18.14 39.18,18.14 39.18,20.12 39.18,22.09 	"></polygon>
+    </g>
+    <g id="line_2__aufbau">
+        <polygon id="line_2__aufbau" points="20.58,22.09 38.18,22.09 38.18,18.14 20.58,18.14 20.58,20.12 20.58,22.09 	"></polygon>
+    </g>
+    <g id="line_1__aufbau">
+        <polygon id="line_1__aufbau" points="20.58,22.09 38.18,22.09 38.18,18.14 20.58,18.14 20.58,20.12 20.58,22.09 	"></polygon>
+    </g>
+</svg>
+ΥVνο      ]Φ―]Φ²@„δn]τ²   8    :https://computerhoy.com/themes/computerhoy/img/logo.svg necko:classified 1 strongly-framed 1 security-info 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 request-method GET response-head HTTP/2.0 200 OK
+date: Tue, 18 Jun 2019 06:07:48 GMT
+last-modified: Wed, 12 Jun 2019 11:18:50 GMT
+etag: "899c-58b1e93e97001"
+content-length: 35228
+cache-control: max-age=1209600
+expires: Tue, 02 Jul 2019 06:07:48 GMT
+content-type: image/svg+xml
+age: 808700
+accept-ranges: bytes
+X-Firefox-Spdy: h2
+ original-response-headers date: Tue, 18 Jun 2019 06:07:48 GMT
+last-modified: Wed, 12 Jun 2019 11:18:50 GMT
+etag: "899c-58b1e93e97001"
+content-length: 35228
+cache-control: max-age=1209600
+expires: Tue, 02 Jul 2019 06:07:48 GMT
+content-type: image/svg+xml
+age: 808700
+accept-ranges: bytes
+X-Firefox-Spdy: h2
+ net-response-time-onstart 2008 net-response-time-onstop 2519   ‰

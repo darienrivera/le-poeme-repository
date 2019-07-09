@@ -1,0 +1,1906 @@
+//Fix getComputedStyle for IE8 and older
+if (!window.getComputedStyle) {
+	window.getComputedStyle = function(el, pseudo) {
+		this.el = el;
+		this.getPropertyValue = function(prop) {
+			var re = /(\-([a-z]){1})/g;
+			if (prop == 'float') prop = 'styleFloat';
+			if (re.test(prop)) {
+				prop = prop.replace(re, function () {
+					return arguments[2].toUpperCase();
+				});
+			}
+			return el.currentStyle[prop] ? el.currentStyle[prop] : null;
+		}
+		return this;
+	}
+}
+
+function defineLanguage(){
+	if(window.location.search.indexOf('ydLanguage') != -1){
+		setLanguage = window.location.search.split('ydLanguage=')[1].toString();
+		if(setLanguage.indexOf('&') != -1){
+			setLanguage = setLanguage.split('&')[0].toString();
+		}
+		defineJsonpContent(setLanguage);
+	}else{//else append language YDDB and check that
+		var languageYddbLocation = ydLocationProtocol + "//d.254a.com/yddb?type=rd&advnme=" + languageYddbName + "&output=jsonp";
+		var yddbScriptTag = document.createElement('script');
+		yddbScriptTag.src = languageYddbLocation;
+		document.getElementsByTagName('head')[0].appendChild(yddbScriptTag);
+	}
+}
+
+function defineJsonpContent(language){
+	//retrieve the auction ID
+	if(window.location.search.indexOf("auction_id") != -1) {
+		var auctionId = window.location.search.split('auction_id=')[1].toString();
+		//check if no other parameters are defined after the string, if so cut those off
+		if(auctionId.indexOf("&") != -1) {
+			auctionId = auctionId.split("&")[0].toString();
+		}
+	}else{
+		var auctionId = 'undefined';
+	}
+	var productFeedLocation = ydLocationProtocol + '//d.254a.com/imp/' + productFeedName + '?__output=jsonp&__max_results=' + numProducts + '&auction_id=' + auctionId;
+	if(defaultProduct != ''){productFeedLocation = productFeedLocation + '&productID=' + defaultProduct}
+	//Retrieve JSONP and put in script tag in the HTML head
+	var jsonpScriptTag = document.createElement('script');
+	jsonpScriptTag.src = productFeedLocation;
+	document.getElementsByTagName('head')[0].appendChild(jsonpScriptTag);
+}
+
+function yddb_jsonp(object){
+	if(object.ydctnt.language != undefined){//check if language is defined in YDDB, else check browser language
+		setLanguage = object.ydctnt.language;
+	}else{//get browser language
+		var browserLanguage = navigator.language || navigator.userLanguage;
+		if(browserLanguage.indexOf("-") != -1){//if browser language contains - (e.g. "en-US"), split it on the -
+			setLanguage = browserLanguage.split("-")[0];
+		}else if(browserLanguage == undefined){//when language is undefined use defaultLanguage
+			setLanguage = defaultLanguage;
+		}else{
+			setLanguage = browserLanguage;
+		}
+	}
+	//if language is retrieved get JSONP
+	defineJsonpContent(setLanguage);
+}
+
+ // Text resize functions
+function resizeLoop(min, max, testTag, checkSize) {
+	var fontSize = min;
+
+	for (var i = 0; i < 30; i++) {
+		testTag.style.fontSize = fontSize + "px";
+		if (checkSize(testTag)) {
+			max = fontSize;
+			fontSize = (fontSize + min) / 2;
+		} else {
+			if (max == 0) {
+				// Start by growing exponentially
+				min = fontSize;
+				fontSize *= 2;
+			} else {
+				// If we're within 1px of max anyway, call it a day
+				if (max - fontSize < 0.1) break;
+
+				// If we've seen a max, move half way to it
+				min = fontSize;
+				fontSize = (fontSize + max) / 2;
+			}
+		}
+	}
+
+	return fontSize;
+}
+
+function sizeText(min, max, tag) {
+
+	tag.style.width = Math.floor(parseInt(tag.offsetWidth)) + "px";
+
+    // Clone original tag and append to the same place so we keep its original styles, especially font
+	var testTag = tag.cloneNode(true);
+	testTag.style.position = "absolute";
+	testTag.style.margin = 0;
+	testTag.style.left = 0;
+	testTag.style.top = 0;
+	testTag.style.right = "auto";
+	testTag.style.bottom = "auto";
+	testTag.style.listStyleType = "none";
+	testTag.style.visibility = "hidden";
+
+	tag.appendChild(testTag);
+
+	var tagInterval = setInterval(function() {
+	    tag.style.display = 'none';
+	    tag.style.display = 'block';
+	    if ((tag.offsetWidth + 1) >= testTag.offsetWidth && (tag.offsetHeight + 1) >= testTag.offsetHeight) {
+
+		    testTag.style.width = "auto";
+		    testTag.style.height = "auto";
+
+		    var fontSize;
+		    fontSize = resizeLoop(min, max, testTag, function(t) {
+
+		        return t.offsetWidth > tag.offsetWidth || t.offsetHeight > tag.offsetHeight;
+		    });
+
+		    testTag.parentNode.removeChild(testTag);
+		    tag.style.fontSize = Math.floor(fontSize)+"px";
+
+		    // Special treatments
+		    afterResize(tag, Math.floor(fontSize));
+
+		    clearInterval(tagInterval);
+
+	    }
+	}, 25);
+};
+
+function fitText(el, min, max) {
+	sizeText(min, max, el);
+}
+
+var textsResized = false;
+function afterResize(el, fontSize) {
+
+	if (ie <= 8 && ie != false) var style = el.currentStyle;
+	else var style = getComputedStyle(el);
+
+	setTimeout(function() { textsResized = true; }, 1000);
+	if (!textsResized) setTimeout(function() { fitText(el, 8, 90); }, 100);
+	else {
+		var lastHeight = el.offsetHeight;
+		el.style.height = 'auto';
+		el.style.paddingTop = (parseInt(style.paddingTop) + (lastHeight - el.offsetHeight) / 2) + 'px';
+		el.style.height = lastHeight + 'px';
+	}
+} function fadeIn(el,time) {
+
+    var opacity = 0;
+
+    el.style.opacity = 0;
+    el.style.filter = '';
+
+    var last = +new Date();
+    var tick = function() {
+      opacity += (new Date() - last) / time;
+      el.style.opacity = opacity;
+      el.style.filter = 'progid:DXImageTransform.Microsoft.Alpha(opacity='+ (opacity*100) +')';
+
+      last = +new Date();
+
+      if (+el.style.opacity < 1) {
+        (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+      }
+    };
+
+    tick();
+}
+
+function fadeOut(el, time) {
+
+    var opacity = 1;
+
+    el.style.opacity = 1;
+    el.style.filter = '';
+
+    var last = +new Date();
+    var tick = function() {
+    	opacity -= (new Date() - last) / time;
+      el.style.opacity = opacity;
+      el.style.filter = 'progid:DXImageTransform.Microsoft.Alpha(opacity='+ (opacity*100) +')';
+
+      last = +new Date();
+
+      if (+el.style.opacity > 0) {
+        (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16)
+      }
+    };
+
+    tick();
+}
+
+
+
+
+ /*!
+  * Morpheus - A Brilliant Animator
+  * https://github.com/ded/morpheus - (c) Dustin Diaz 2011
+  * License MIT
+  */
+!function (name, definition) {
+  if (typeof define == 'function') define(definition)
+  else if (typeof module != 'undefined') module.exports = definition()
+  else this[name] = definition()
+}('morpheus', function () {
+
+  var doc = document
+    , win = window
+    , perf = win.performance
+    , perfNow = perf && (perf.now || perf.webkitNow || perf.msNow || perf.mozNow)
+    , now = perfNow ? function () { return perfNow.call(perf) } : function () { return +new Date() }
+    , fixTs = false // feature detected below
+    , html = doc.documentElement
+    , thousand = 1000
+    , rgbOhex = /^rgb\(|#/
+    , relVal = /^([+\-])=([\d\.]+)/
+    , numUnit = /^(?:[\+\-]=?)?\d+(?:\.\d+)?(%|in|cm|mm|em|ex|pt|pc|px)$/
+    , rotate = /rotate\(((?:[+\-]=)?([\-\d\.]+))deg\)/
+    , scale = /scale\(((?:[+\-]=)?([\d\.]+))\)/
+    , skew = /skew\(((?:[+\-]=)?([\-\d\.]+))deg, ?((?:[+\-]=)?([\-\d\.]+))deg\)/
+    , translate = /translate\(((?:[+\-]=)?([\-\d\.]+))px, ?((?:[+\-]=)?([\-\d\.]+))px\)/
+      // these elements do not require 'px'
+    , unitless = { lineHeight: 1, zoom: 1, zIndex: 1, opacity: 1, transform: 1}
+
+  // which property name does this browser use for transform
+  var transform = function () {
+    var styles = doc.createElement('a').style
+      , props = ['webkitTransform', 'MozTransform', 'OTransform', 'msTransform', 'Transform']
+      , i
+    for (i = 0; i < props.length; i++) {
+      if (props[i] in styles) return props[i]
+    }
+  }()
+
+  // does this browser support the opacity property?
+  var opasity = function () {
+    return typeof doc.createElement('a').style.opacity !== 'undefined'
+  }()
+
+  // auto style is determined by the elements themselves
+  var getStyle = doc.defaultView && doc.defaultView.getComputedStyle ?
+    function (el, property) {
+      property = property == 'transform' ? transform : property
+      property = camelize(property)
+      var value = null
+        , computed = doc.defaultView.getComputedStyle(el, '')
+      computed && (value = computed[property])
+      return el.style[property] || value
+    } : html.currentStyle ?
+
+    function (el, property) {
+      property = camelize(property)
+
+      if (property == 'opacity') {
+        var val = 100
+        try {
+          val = el.filters['DXImageTransform.Microsoft.Alpha'].opacity
+        } catch (e1) {
+          try {
+            val = el.filters('alpha').opacity
+          } catch (e2) {}
+        }
+        return val / 100
+      }
+      var value = el.currentStyle ? el.currentStyle[property] : null
+      return el.style[property] || value
+    } :
+    function (el, property) {
+      return el.style[camelize(property)]
+    }
+
+  var frame = function () {
+    // native animation frames
+    // http://webstuff.nfshost.com/anim-timing/Overview.html
+    // http://dev.chromium.org/developers/design-documents/requestanimationframe-implementation
+    return win.requestAnimationFrame  ||
+      win.webkitRequestAnimationFrame ||
+      win.mozRequestAnimationFrame    ||
+      win.msRequestAnimationFrame     ||
+      win.oRequestAnimationFrame      ||
+      function (callback) {
+        win.setTimeout(function () {
+          callback(+new Date())
+        }, 17) // when I was 17..
+      }
+  }()
+
+  frame(function(timestamp) {
+    // feature-detect if rAF and now() are of the same scale (epoch or high-res),
+    // if not, we have to do a timestamp fix on each frame
+    fixTs = timestamp > 1e12 != now() > 1e12
+  })
+
+  var children = []
+
+  function has(array, elem, i) {
+    if (Array.prototype.indexOf) return array.indexOf(elem)
+    for (i = 0; i < array.length; ++i) {
+      if (array[i] === elem) return i
+    }
+  }
+
+  function render(timestamp) {
+    var i, count = children.length
+    if (fixTs) timestamp = now()
+    for (i = count; i--;) {
+      children[i](timestamp)
+    }
+    children.length && frame(render)
+  }
+
+  function live(f) {
+    if (children.push(f) === 1) frame(render)
+  }
+
+  function die(f) {
+    var rest, index = has(children, f)
+    if (index >= 0) {
+      rest = children.slice(index + 1)
+      children.length = index
+      children = children.concat(rest)
+    }
+  }
+
+  function parseTransform(style, base) {
+    var values = {}, m
+    if (m = style.match(rotate)) values.rotate = by(m[1], base ? base.rotate : null)
+    if (m = style.match(scale)) values.scale = by(m[1], base ? base.scale : null)
+    if (m = style.match(skew)) {values.skewx = by(m[1], base ? base.skewx : null); values.skewy = by(m[3], base ? base.skewy : null)}
+    if (m = style.match(translate)) {values.translatex = by(m[1], base ? base.translatex : null); values.translatey = by(m[3], base ? base.translatey : null)}
+    return values
+  }
+
+  function formatTransform(v) {
+    var s = ''
+    if ('rotate' in v) s += 'rotate(' + v.rotate + 'deg) '
+    if ('scale' in v) s += 'scale(' + v.scale + ') '
+    if ('translatex' in v) s += 'translate(' + v.translatex + 'px,' + v.translatey + 'px) '
+    if ('skewx' in v) s += 'skew(' + v.skewx + 'deg,' + v.skewy + 'deg)'
+    return s
+  }
+
+  function rgb(r, g, b) {
+    return '#' + (1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1)
+  }
+
+  // convert rgb and short hex to long hex
+  function toHex(c) {
+    var m = c.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/)
+    return (m ? rgb(m[1], m[2], m[3]) : c)
+      .replace(/#(\w)(\w)(\w)$/, '#$1$1$2$2$3$3') // short skirt to long jacket
+  }
+
+  // change font-size => fontSize etc.
+  function camelize(s) {
+    return s.replace(/-(.)/g, function (m, m1) {
+      return m1.toUpperCase()
+    })
+  }
+
+  // aren't we having it?
+  function fun(f) {
+    return typeof f == 'function'
+  }
+
+  function nativeTween(t) {
+    // default to a pleasant-to-the-eye easeOut (like native animations)
+    return Math.sin(t * Math.PI / 2)
+  }
+
+  /**
+    * Core tween method that requests each frame
+    * @param duration: time in milliseconds. defaults to 1000
+    * @param fn: tween frame callback function receiving 'position'
+    * @param done {optional}: complete callback function
+    * @param ease {optional}: easing method. defaults to easeOut
+    * @param from {optional}: integer to start from
+    * @param to {optional}: integer to end at
+    * @returns method to stop the animation
+    */
+  function tween(duration, fn, done, ease, from, to) {
+    ease = fun(ease) ? ease : morpheus.easings[ease] || nativeTween
+    var time = duration || thousand
+      , self = this
+      , diff = to - from
+      , start = now()
+      , stop = 0
+      , end = 0
+
+    function run(t) {
+      var delta = t - start
+      if (delta > time || stop) {
+        to = isFinite(to) ? to : 1
+        stop ? end && fn(to) : fn(to)
+        die(run)
+        return done && done.apply(self)
+      }
+      // if you don't specify a 'to' you can use tween as a generic delta tweener
+      // cool, eh?
+      isFinite(to) ?
+        fn((diff * ease(delta / time)) + from) :
+        fn(ease(delta / time))
+    }
+
+    live(run)
+
+    return {
+      stop: function (jump) {
+        stop = 1
+        end = jump // jump to end of animation?
+        if (!jump) done = null // remove callback if not jumping to end
+      }
+    }
+  }
+
+  /**
+    * generic bezier method for animating x|y coordinates
+    * minimum of 2 points required (start and end).
+    * first point start, last point end
+    * additional control points are optional (but why else would you use this anyway ;)
+    * @param points: array containing control points
+       [[0, 0], [100, 200], [200, 100]]
+    * @param pos: current be(tween) position represented as float  0 - 1
+    * @return [x, y]
+    */
+  function bezier(points, pos) {
+    var n = points.length, r = [], i, j
+    for (i = 0; i < n; ++i) {
+      r[i] = [points[i][0], points[i][1]]
+    }
+    for (j = 1; j < n; ++j) {
+      for (i = 0; i < n - j; ++i) {
+        r[i][0] = (1 - pos) * r[i][0] + pos * r[parseInt(i + 1, 10)][0]
+        r[i][1] = (1 - pos) * r[i][1] + pos * r[parseInt(i + 1, 10)][1]
+      }
+    }
+    return [r[0][0], r[0][1]]
+  }
+
+  // this gets you the next hex in line according to a 'position'
+  function nextColor(pos, start, finish) {
+    var r = [], i, e, from, to
+    for (i = 0; i < 6; i++) {
+      from = Math.min(15, parseInt(start.charAt(i),  16))
+      to   = Math.min(15, parseInt(finish.charAt(i), 16))
+      e = Math.floor((to - from) * pos + from)
+      e = e > 15 ? 15 : e < 0 ? 0 : e
+      r[i] = e.toString(16)
+    }
+    return '#' + r.join('')
+  }
+
+  // this retreives the frame value within a sequence
+  function getTweenVal(pos, units, begin, end, k, i, v) {
+    if (k == 'transform') {
+      v = {}
+      for (var t in begin[i][k]) {
+        v[t] = (t in end[i][k]) ? Math.round(((end[i][k][t] - begin[i][k][t]) * pos + begin[i][k][t]) * thousand) / thousand : begin[i][k][t]
+      }
+      return v
+    } else if (typeof begin[i][k] == 'string') {
+      return nextColor(pos, begin[i][k], end[i][k])
+    } else {
+      // round so we don't get crazy long floats
+      v = Math.round(((end[i][k] - begin[i][k]) * pos + begin[i][k]) * thousand) / thousand
+      // some css properties don't require a unit (like zIndex, lineHeight, opacity)
+      if (!(k in unitless)) v += units[i][k] || 'px'
+      return v
+    }
+  }
+
+  // support for relative movement via '+=n' or '-=n'
+  function by(val, start, m, r, i) {
+    return (m = relVal.exec(val)) ?
+      (i = parseFloat(m[2])) && (start + (m[1] == '+' ? 1 : -1) * i) :
+      parseFloat(val)
+  }
+
+  /**
+    * morpheus:
+    * @param element(s): HTMLElement(s)
+    * @param options: mixed bag between CSS Style properties & animation options
+    *  - {n} CSS properties|values
+    *     - value can be strings, integers,
+    *     - or callback function that receives element to be animated. method must return value to be tweened
+    *     - relative animations start with += or -= followed by integer
+    *  - duration: time in ms - defaults to 1000(ms)
+    *  - easing: a transition method - defaults to an 'easeOut' algorithm
+    *  - complete: a callback method for when all elements have finished
+    *  - bezier: array of arrays containing x|y coordinates that define the bezier points. defaults to none
+    *     - this may also be a function that receives element to be animated. it must return a value
+    */
+  function morpheus(elements, options) {
+    var els = elements ? (els = isFinite(elements.length) ? elements : [elements]) : [], i
+      , complete = options.complete
+      , duration = options.duration
+      , ease = options.easing
+      , points = options.bezier
+      , begin = []
+      , end = []
+      , units = []
+      , bez = []
+      , originalLeft
+      , originalTop
+
+    if (points) {
+      // remember the original values for top|left
+      originalLeft = options.left;
+      originalTop = options.top;
+      delete options.right;
+      delete options.bottom;
+      delete options.left;
+      delete options.top;
+    }
+
+    for (i = els.length; i--;) {
+
+      // record beginning and end states to calculate positions
+      begin[i] = {}
+      end[i] = {}
+      units[i] = {}
+
+      // are we 'moving'?
+      if (points) {
+
+        var left = getStyle(els[i], 'left')
+          , top = getStyle(els[i], 'top')
+          , xy = [by(fun(originalLeft) ? originalLeft(els[i]) : originalLeft || 0, parseFloat(left)),
+                  by(fun(originalTop) ? originalTop(els[i]) : originalTop || 0, parseFloat(top))]
+
+        bez[i] = fun(points) ? points(els[i], xy) : points
+        bez[i].push(xy)
+        bez[i].unshift([
+          parseInt(left, 10),
+          parseInt(top, 10)
+        ])
+      }
+
+      for (var k in options) {
+        switch (k) {
+        case 'complete':
+        case 'duration':
+        case 'easing':
+        case 'bezier':
+          continue
+        }
+        var v = getStyle(els[i], k), unit
+          , tmp = fun(options[k]) ? options[k](els[i]) : options[k]
+        if (typeof tmp == 'string' &&
+            rgbOhex.test(tmp) &&
+            !rgbOhex.test(v)) {
+          delete options[k]; // remove key :(
+          continue; // cannot animate colors like 'orange' or 'transparent'
+                    // only #xxx, #xxxxxx, rgb(n,n,n)
+        }
+
+        begin[i][k] = k == 'transform' ? parseTransform(v) :
+          typeof tmp == 'string' && rgbOhex.test(tmp) ?
+            toHex(v).slice(1) :
+            parseFloat(v)
+        end[i][k] = k == 'transform' ? parseTransform(tmp, begin[i][k]) :
+          typeof tmp == 'string' && tmp.charAt(0) == '#' ?
+            toHex(tmp).slice(1) :
+            by(tmp, parseFloat(v));
+        // record original unit
+        (typeof tmp == 'string') && (unit = tmp.match(numUnit)) && (units[i][k] = unit[1])
+      }
+    }
+    // ONE TWEEN TO RULE THEM ALL
+    return tween.apply(els, [duration, function (pos, v, xy) {
+      // normally not a fan of optimizing for() loops, but we want something
+      // fast for animating
+      for (i = els.length; i--;) {
+        if (points) {
+          xy = bezier(bez[i], pos)
+          els[i].style.left = xy[0] + 'px'
+          els[i].style.top = xy[1] + 'px'
+        }
+        for (var k in options) {
+          v = getTweenVal(pos, units, begin, end, k, i)
+          k == 'transform' ?
+            els[i].style[transform] = formatTransform(v) :
+            k == 'opacity' && !opasity ?
+              (els[i].style.filter = 'alpha(opacity=' + (v * 100) + ')') :
+              (els[i].style[camelize(k)] = v)
+        }
+      }
+    }, complete, ease])
+  }
+
+  // expose useful methods
+  morpheus.tween = tween
+  morpheus.getStyle = getStyle
+  morpheus.bezier = bezier
+  morpheus.transform = transform
+  morpheus.parseTransform = parseTransform
+  morpheus.formatTransform = formatTransform
+  morpheus.easings = {}
+
+  return morpheus
+
+});
+ /* The equations defined here are open source under BSD License.
+ * http://www.robertpenner.com/easing_terms_of_use.html (c) 2003 Robert Penner
+ * Adapted to single time-based by
+ * Brian Crescimanno <brian.crescimanno@gmail.com>
+ * Ken Snyder <kendsnyder@gmail.com>
+
+  swingFromTo
+  swingFrom
+  swingTo ++
+  easeFromTo
+  easeFrom
+  easeTo
+  easeInQuad
+  easeOutQuad
+  easeInOutQuad
+  easeInCubic
+  easeOutCubic
+  easeInOutCubic
+  easeInQuart
+  easeOutQuart
+  easeInOutQuart
+  easeInQuint
+  easeOutQuint
+  easeInOutQuint
+  easeInSine
+  easeOutSine
+  easeInOutSine
+  easeInExpo
+  easeOutExpo
+  easeInOutExpo
+  easeInCirc
+  easeOutCirc
+  easeInOutCirc
+  easeOutBounce
+  easeInBack
+  easeOutBack
+  easeInOutBack
+  bounce ++
+  bouncePast ++
+  elastic - just works for brezier
+
+ */
+var easings = {
+  easeOut: function (t) {
+    return Math.sin(t * Math.PI / 2);
+  }
+
+  , easeOutStrong: function (t) {
+    return (t == 1) ? 1 : 1 - Math.pow(2, -10 * t);
+  }
+
+  , easeIn: function (t) {
+    return t * t;
+  }
+
+  , easeInStrong: function (t) {
+    return (t == 0) ? 0 : Math.pow(2, 10 * (t - 1));
+  }
+
+  , easeOutBounce: function(pos) {
+    if ((pos) < (1/2.75)) {
+      return (7.5625*pos*pos);
+    } else if (pos < (2/2.75)) {
+      return (7.5625*(pos-=(1.5/2.75))*pos + .75);
+    } else if (pos < (2.5/2.75)) {
+      return (7.5625*(pos-=(2.25/2.75))*pos + .9375);
+    } else {
+      return (7.5625*(pos-=(2.625/2.75))*pos + .984375);
+    }
+  }
+
+  , easeInBack: function(pos){
+    var s = 1.70158;
+    return (pos)*pos*((s+1)*pos - s);
+  }
+
+  , easeOutBack: function(pos){
+    var s = 1.70158;
+    return (pos=pos-1)*pos*((s+1)*pos + s) + 1;
+  }
+
+  , bounce: function (t) {
+    if (t < (1 / 2.75)) {
+      return 7.5625 * t * t;
+    }
+    if (t < (2 / 2.75)) {
+      return 7.5625 * (t -= (1.5 / 2.75)) * t + 0.75;
+    }
+    if (t < (2.5 / 2.75)) {
+      return 7.5625 * (t -= (2.25 / 2.75)) * t + 0.9375;
+    }
+    return 7.5625 * (t -= (2.625 / 2.75)) * t + 0.984375;
+  }
+
+  , bouncePast: function (pos) {
+    if (pos < (1 / 2.75)) {
+      return (7.5625 * pos * pos);
+    } else if (pos < (2 / 2.75)) {
+      return 2 - (7.5625 * (pos -= (1.5 / 2.75)) * pos + .75);
+    } else if (pos < (2.5 / 2.75)) {
+      return 2 - (7.5625 * (pos -= (2.25 / 2.75)) * pos + .9375);
+    } else {
+      return 2 - (7.5625 * (pos -= (2.625 / 2.75)) * pos + .984375);
+    }
+  }
+
+  , swingTo: function(pos) {
+    var s = 1.70158;
+    return (pos -= 1) * pos * ((s + 1) * pos + s) + 1;
+  }
+
+  , swingFrom: function (pos) {
+    var s = 1.70158;
+    return pos * pos * ((s + 1) * pos - s);
+  }
+
+  , elastic: function(pos) {
+    return -1 * Math.pow(4, -8 * pos) * Math.sin((pos * 6 - 1) * (2 * Math.PI) / 2) + 1;
+  }
+
+  , spring: function(pos) {
+    return 1 - (Math.cos(pos * 4.5 * Math.PI) * Math.exp(-pos * 6));
+  }
+
+  , blink: function(pos, blinks) {
+    return Math.round(pos*(blinks||5)) % 2;
+  }
+
+  , pulse: function(pos, pulses) {
+    return (-Math.cos((pos*((pulses||5)-.5)*2)*Math.PI)/2) + .5;
+  }
+
+  , wobble: function(pos) {
+    return (-Math.cos(pos*Math.PI*(9*pos))/2) + 0.5;
+  }
+
+  , sinusoidal: function(pos) {
+    return (-Math.cos(pos*Math.PI)/2) + 0.5;
+  }
+
+  , flicker: function(pos) {
+    var pos = pos + (Math.random()-0.5)/5;
+    return easings.sinusoidal(pos < 0 ? 0 : pos > 1 ? 1 : pos);
+  }
+
+  , mirror: function(pos) {
+    if (pos < 0.5)
+    return easings.sinusoidal(pos*2);
+    else
+    return easings.sinusoidal(1-(pos-0.5)*2);
+  }
+
+}; /*
+CSS Browser Selector v0.4.0 (Nov 02, 2010)
+Rafael Lima (http://rafael.adm.br)
+http://rafael.adm.br/css_browser_selector
+License: http://creativecommons.org/licenses/by/2.5/
+Contributors: http://rafael.adm.br/css_browser_selector#contributors
+*/
+function css_browser_selector(u){var ua=u.toLowerCase(),is=function(t){return ua.indexOf(t)>-1},g='gecko',w='webkit',s='safari',o='opera',m='mobile',h=document.documentElement,b=[(!(/opera|webtv/i.test(ua))&&/msie\s(\d)/.test(ua))?('ie ie'+(/trident\/4\.0/.test(ua) ? '8' : RegExp.$1)):is('firefox/2')?g+' ff2':is('firefox/3.5')?g+' ff3 ff3_5':is('firefox/3.6')?g+' ff3 ff3_6':is('firefox/3')?g+' ff3':is('gecko/')?g:is('opera')?o+(/version\/(\d+)/.test(ua)?' '+o+RegExp.$1:(/opera(\s|\/)(\d+)/.test(ua)?' '+o+RegExp.$2:'')):is('konqueror')?'konqueror':is('blackberry')?m+' blackberry':is('android')?m+' android':is('chrome')?w+' chrome':is('iron')?w+' iron':is('applewebkit/')?w+' '+s+(/version\/(\d+)/.test(ua)?' '+s+RegExp.$1:''):is('mozilla/')?g:'',is('j2me')?m+' j2me':is('iphone')?m+' iphone':is('ipod')?m+' ipod':is('ipad')?m+' ipad':is('mac')?'mac':is('darwin')?'mac':is('webtv')?'webtv':is('win')?'win'+(is('windows nt 6.0')?' vista':''):is('freebsd')?'freebsd':(is('x11')||is('linux'))?'linux':'','js']; c = b.join(' '); h.className += ' '+c; return c;}; css_browser_selector(navigator.userAgent); /*
+	Library homepage: https://github.com/Metafalica/background-size-emu
+
+	This library is result of my intellectual work.
+	I (the author, named Konstantin Izofatov, living in Russia, metafalica@gmx.com) grant you (the user) permissions
+	to use BgSzEmu.prototype library in any kind of projects (free, paid, etc) and modify it in any way.
+	However, it's forbidden to sell this library alone (as it is).
+
+	This library provided "AS IS". I am not responsible for any damages that you can receive from using it.
+	Use it on your own risk.
+
+	This notice should not be removed.
+*/
+
+function resizeImages() {
+
+  if (document.querySelectorAll(".ie8").length > 0) { //ie <= 8 && ie != false) {
+
+    /*
+      Library homepage: https://github.com/Metafalica/background-size-emu
+
+      This library is result of my intellectual work.
+      I (the author, named Konstantin Izofatov, living in Russia, metafalica@gmx.com) grant you (the user) permissions
+      to use BgSzEmu.prototype library in any kind of projects (free, paid, etc) and modify it in any way.
+      However, it's forbidden to sell this library alone (as it is).
+
+      This library provided "AS IS". I am not responsible for any damages that you can receive from using it.
+      Use it on your own risk.
+
+      This notice should not be removed.
+    */
+
+    function BgSzEmu()
+    {
+      BgSzEmu.prototype.imageSizeCalculationModeIsBugged = false;
+      BgSzEmu.prototype.elemsOnPrevCheck = null;
+      //that gif from background-size-polyfill is sure shorter... but meh... it's not mine :P
+      BgSzEmu.prototype.transparentSinglePixel = "url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwwAADsMBx2+oZAAAABh0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC4zjOaXUAAAAA1JREFUGFdjYGBgYAAAAAUAAYoz4wAAAAAASUVORK5CYII=)";
+    }
+
+    BgSzEmu.prototype.scanElems = function()
+    {
+      if (document.body)
+      {
+        var curr_elems = document.querySelectorAll(".img");
+        for (var i = 0; i < curr_elems.length; i++) BgSzEmu.prototype.fixBgFor(curr_elems[i]);
+
+        var logo_elem = document.getElementById("logo");
+        BgSzEmu.prototype.fixBgFor(logo_elem);
+      }
+    };
+
+    BgSzEmu.prototype.handlePropertyChange = function ()
+    {
+      var evt = window.event;
+      var elem = evt.target || evt.srcElement;
+
+      if (evt.propertyName == "onpropertychange" || !elem)
+        return;
+
+      if (evt.propertyName == "style.backgroundImage")
+      {
+        var bg_img = elem.style.backgroundImage || elem.style.getAttribute("background-image");
+
+        if (BgSzEmu.prototype.stringContains(bg_img, BgSzEmu.prototype.transparentSinglePixel))
+          return;
+        else
+          BgSzEmu.prototype.replaceBgImgFor(elem);
+      }
+    };
+
+    BgSzEmu.prototype.replaceBgImgFor = function(elem)
+    {
+      if (!BgSzEmu.prototype.elemCanHaveDivAsChildren(elem)) //can't deal with tags that do not support children
+        return;
+
+      var prop_change_removed = false;
+
+      if (elem.onpropertychange)
+      {
+        elem.onpropertychange = null;
+        prop_change_removed = true;
+      }
+
+      var prev_backgroundImage = elem.style.backgroundImage || elem.style.getAttribute("background-image") || elem.background || elem.getAttribute("background");
+      //var curr_backgroundSize = elem.style.backgroundSize || elem.style.getAttribute("background-size");
+
+      if (BgSzEmu.prototype.stringContains(prev_backgroundImage, BgSzEmu.prototype.transparentSinglePixel))
+      {
+        BgSzEmu.prototype.fixBgFor(elem);
+
+        if (prop_change_removed)
+          elem.onpropertychange = BgSzEmu.prototype.handlePropertyChange;
+
+        return;
+      }
+
+      if (!prev_backgroundImage)
+      {
+        if (elem.junkData)
+        {
+          elem.removeChild(elem.junkData.inner_div);
+          elem.style.position = elem.junkData.orig_pos;
+          elem.style.zIndex = elem.junkData.orig_zInd;
+          elem.junkData = null;
+        }
+
+        if (prop_change_removed)
+          elem.onpropertychange = BgSzEmu.prototype.handlePropertyChange;
+
+        return;
+      }
+
+      BgSzEmu.prototype.getImgNaturalSizeAndPassToCallback(elem, prev_backgroundImage, BgSzEmu.prototype.continueBgReplaceFor);
+    };
+
+    BgSzEmu.prototype.continueBgReplaceFor = function (elem, prev_backgroundImage, img_natural_size)
+    {
+      var prev_zIndex = elem.style.zIndex;
+      var prev_position = elem.style.position;
+
+      if (img_natural_size.width == 0 && img_natural_size.height == 0) //bad img url?
+      {
+
+        if (prop_change_removed)
+          elem.onpropertychange = BgSzEmu.prototype.handlePropertyChange;
+
+        return;
+      }
+
+      elem.style.backgroundImage = BgSzEmu.prototype.transparentSinglePixel;
+
+      if ("background" in elem)
+        elem.background = BgSzEmu.prototype.transparentSinglePixel;
+
+      /*if (!elem.style.position || elem.style.position == "static")
+        elem.style.position = "relative";
+
+      */if (!elem.style.zIndex || elem.style.zIndex == "auto")
+        elem.style.zIndex = 0;
+
+      var div = document.createElement("div");
+      var img = document.createElement("img");
+
+      div.style.margin = 0;
+      div.style.top = "0px";
+      div.style.left = "0px";
+      div.style.width = "100%";
+      div.style.height = "100%";
+      div.style.overflow = "hidden";
+      //div.style.border = "double";
+      div.style.zIndex = img.style.zIndex = -1;
+      div.style.display = img.style.display = "block";
+      div.style.position = img.style.position = "absolute";
+      div.style.visibility = img.style.visibility = "inherit";
+
+      img.alt = "";
+      img.src = BgSzEmu.prototype.getPurePathFrom(prev_backgroundImage);
+
+      if (elem.junkData)
+      {
+        elem.removeChild(elem.junkData.inner_div);
+        elem.junkData = null;
+      }
+
+      var junkData = { orig_bgImg: prev_backgroundImage, orig_pos: prev_position, orig_zInd: prev_zIndex, inner_div: div, inner_img: img, inner_img_nat_size: img_natural_size };
+      elem.junkData = junkData;
+
+      div.appendChild(img);
+
+      if (elem.firstChild)
+        elem.insertBefore(div, elem.firstChild);
+      else
+        elem.appendChild(div);
+
+      BgSzEmu.prototype.fixBgFor(elem);
+
+      elem.onpropertychange = BgSzEmu.prototype.handlePropertyChange;
+    };
+
+    BgSzEmu.prototype.getImgNaturalSizeAndPassToCallback = function (elem, img_path, callback)
+    {
+      var pure_path = BgSzEmu.prototype.getPurePathFrom(img_path);
+
+      var img = new Image();
+
+      img.onload = function ()
+      {
+        var sz = { width: this.width, height: this.height };
+        callback(elem, img_path, sz);
+      };
+      img.src = pure_path;
+    };
+
+    BgSzEmu.prototype.getAvailableAreaSizeIn = function (elem, get_elem_size_instead_of_inner_div)
+    {
+      var sz = null;
+
+      if (get_elem_size_instead_of_inner_div || !elem.junkData)
+        sz = { width: elem.clientWidth || elem.offsetWidth || elem.scrollWidth, height: elem.clientHeight || elem.offsetHeight || elem.scrollHeight };
+      else if (elem.junkData)
+        sz = { width: elem.junkData.inner_div.offsetWidth, height: elem.junkData.inner_div.offsetHeight };
+
+      return sz;
+    };
+
+    BgSzEmu.prototype.fixBgFor = function (elem)
+    {
+      var junkData = elem.junkData;
+      var bg_sz = elem.style.backgroundSize || elem.style.getAttribute("background-size");
+
+      if (junkData)
+      {
+        var available_size = BgSzEmu.prototype.getAvailableAreaSizeIn(elem, BgSzEmu.prototype.imageSizeCalculationModeIsBugged);
+        var div_width = available_size.width;
+        var div_height = available_size.height;
+        var divRatio = div_width / div_height;
+
+        elem.junkData.lastSize = available_size;
+
+        if (BgSzEmu.prototype.imageSizeCalculationModeIsBugged)
+        {
+          junkData.inner_div.style.width = div_width + "px";
+          junkData.inner_div.style.height = div_height + "px";
+        }
+
+        var img_nat_width = junkData.inner_img_nat_size.width;
+        var img_nat_height = junkData.inner_img_nat_size.height;
+        var img_curr_width = junkData.inner_img.width || junkData.inner_img.style.width;
+        var img_curr_height = junkData.inner_img.height || junkData.inner_img.style.height;
+        var imgRatio = (img_curr_width / img_curr_height) || (img_nat_width / img_nat_height);
+
+        var new_img_width;
+        var new_img_height;
+
+        if (bg_sz == "cover" || bg_sz == "contain" || bg_sz == null)
+        {
+          if ((bg_sz == "cover" && divRatio > imgRatio) || (bg_sz == "contain" && imgRatio > divRatio) || (bg_sz == null && imgRatio > divRatio))
+          {
+            new_img_width = div_width;
+            new_img_height = (new_img_width * img_nat_height) / img_nat_width;
+          }
+          else
+          {
+            new_img_height = div_height;
+            new_img_width = (img_nat_width * new_img_height) / img_nat_height;
+          }
+
+          elem.junkData.inner_img.width = new_img_width;
+          elem.junkData.inner_img.height = new_img_height;
+          elem.junkData.inner_img.style.left = div_width / 2 - new_img_width / 2;
+          elem.junkData.inner_img.style.top = div_height / 2 - new_img_height / 2;
+        }
+      }
+      else if (bg_sz)
+        BgSzEmu.prototype.replaceBgImgFor(elem);
+      else {
+        BgSzEmu.prototype.replaceBgImgFor(elem);
+      }
+    };
+
+    BgSzEmu.prototype.getPurePathFrom = function (str_path)
+    {
+      var final_str = str_path;
+
+      if (final_str.substring(0, ("url(").length) == "url(")
+      {
+        final_str = final_str.substr(4);
+
+        if (final_str.lastIndexOf(")") == final_str.length - 1)
+          final_str = final_str.substr(0, final_str.length - 1);
+      }
+
+      return final_str;
+    };
+
+    BgSzEmu.prototype.stringContains = function (str, suffix)
+    {
+      if (!str)
+        return false;
+
+      return str.indexOf(suffix) > -1;
+    };
+
+    BgSzEmu.prototype.isObjectInArray = function (obj, arr)
+    {
+      //console.log("wewerwerwer");
+
+      for (var i = 0; i < arr.length; i++)
+        if (arr[i] == obj)
+          return true;
+
+      return false;
+    };
+
+    BgSzEmu.prototype.elemCanHaveDivAsChildren = function (elem)
+    {
+      if (elem.tagName.toLowerCase() == "tr") //hacky avoid of elemens that will become bugged after adding div
+        return false;
+
+      if (!BgSzEmu.prototype.imageSizeCalculationModeIsBugged && elem.tagName.toLowerCase() == "table") //not supported in right mode.
+        return false;
+
+      var div = document.createElement("div");
+      div.style.display = "none";
+      var check_result = true;
+
+      try { elem.appendChild(div); }
+      catch (exc) { check_result = false; }
+      finally
+      {
+        if (BgSzEmu.prototype.isObjectInArray(div, elem.children))
+          elem.removeChild(div);
+      }
+
+      return check_result;
+    };
+    //common functions end
+    var bg_sz_emu = new BgSzEmu();
+    bg_sz_emu.scanElems();
+    var intervalImageScanner = setInterval(function(){
+      bg_sz_emu.scanElems();
+      if (totalCounter > 20000) clearInterval(intervalImageScanner);
+    }, 500);
+
+
+  }
+}
+
+
+function id(el) {
+	return document.getElementById(el)
+}
+
+var tl;
+function animateFrames(animationKey, animationDirection, finalFrame){
+	animationPlaying = true;
+
+    // console.log(animationKey, animationDirection, finalFrame)
+
+	var firstFrameCopy = "false";
+	if (animationKey == 0) {
+		newAnimationKey = 1;
+
+		setTimeout(function() {
+			fadeIn(id('logo'), timeToFade);
+			animateArrows();
+		}, timeToFade);
+	}
+	else if (animationKey == 1) {
+		newAnimationKey = 2;
+	}
+	else if (animationKey == 2) {
+		newAnimationKey = 3;
+		firstFrameCopy = "true";
+	}
+	else if (animationKey == 3) {
+		newAnimationKey = 1;
+	}
+
+	if (adSize == "300x600") console.log(animationKey + " " + newAnimationKey);
+
+	if (!(animationKey == 1 && numFrames == 1) && navigation || (animationKey == 0 && !navigation || adSize == "320x50")) {
+		activeFrame = newAnimationKey;
+
+		initCountDown();
+
+		if (newAnimationKey == 0) id('frame_' + newAnimationKey).setAttribute("class", "frame frame_active");
+
+		id('frame_' + animationKey).style.opacity = 1;
+		id('frame_' + animationKey).style.filter = 'progid:DXImageTransform.Microsoft.Alpha(opacity=100)';
+
+		if (animationKey == 0) fadeOut(id('frame_' + animationKey), timeToFade);
+
+		var oldNewAnimationKey = newAnimationKey;
+
+		setTimeout(function(){
+
+            // console.log('sT', animationKey, animationDirection, finalFrame)
+
+			if (animationKey == 0) id('frame_' + animationKey).setAttribute("class", "frame frame_hidden");
+
+			var activeMargin = oldNewAnimationKey - 1;
+			var timeScroll = timeToFade * 2;
+
+			if (adSize == "320x50" || adSize == "468x60" || adSize == "728x90" || adSize == "970x250" || adSize == "1272x328") {
+				var frameWidth = document.getElementById('frame_1').offsetWidth;
+			    tl = morpheus(document.getElementById('frames_container'), {
+			    	marginLeft: frameWidth * activeMargin * -1,
+			    	duration: timeScroll,
+			    	complete: function () {
+			        	animationPlaying = 'false';
+
+			        	if (firstFrameCopy == "true") {
+			        		id('frame_1').style.opacity = 1;
+							id('frame_1').style.filter = 'progid:DXImageTransform.Microsoft.Alpha(opacity=100)';
+
+			        		document.getElementById('frames_container').style.marginLeft = 0;
+
+			        		activeFrame = 1;
+			        	}
+			       	}
+			    });
+			}
+			else {
+				var frameHeight = document.getElementById('frame_1').offsetHeight;
+			    tl = morpheus(document.getElementById('frames_container'), {
+			    	marginTop: frameHeight * activeMargin * -1,
+			    	duration: timeScroll,
+			    	complete: function () {
+			        	animationPlaying = 'false';
+
+			        	if (firstFrameCopy == "true") {
+			        		id('frame_' + 1).style.opacity = 1;
+							id('frame_' + 1).style.filter = 'progid:DXImageTransform.Microsoft.Alpha(opacity=100)';
+
+			        		document.getElementById('frames_container').style.marginTop = 0;
+
+			        		activeFrame = 1;
+			        	}
+			       	}
+			    });
+			}
+		},timeToFade);
+	}
+}
+
+
+function setFrameProductsInterval(timeFrameView) {
+
+	totalInterval = setInterval(function(){
+
+		totalCounter += timeFrameView;
+
+        // console.log('corro from setframeprodcutsinterval')
+
+		if ((totalCounter + timeFrameView) >= 28000) {
+			clearInterval(totalInterval);
+			clearInterval(intervalCountDowns[0]);
+			intervalCountDowns.pop();
+			stopAnim();
+		}
+		else animateFrames(activeFrame, 'next', false);
+
+	}, timeFrameView);
+}
+
+let to;
+function initAnimation() {
+
+	if (stopAnimation != true) {
+
+		id('wrapper').style.backgroundColor = "white";
+		id('logo_wrapper').style.backgroundColor = "white";
+
+		setTimeout(function() {
+
+			var introFade = timeToFade * 2;
+			fadeIn(id('frame_0'), introFade);
+
+			setTimeout(function() {
+
+				fadeIn(id('frames_container'), 100);
+				id('wrapper').style.backgroundColor = borderColor;
+				id('logo_wrapper').style.backgroundColor = borderColor;
+
+			}, introFade);
+		}, 1500);
+
+		var timeFrameView = timeProductView * 2;
+        activeFrame = 0;
+
+        if (to) {
+            clearTimeout(to);
+        }
+
+		if (activeFrame == 0) {
+			to = setTimeout(function() {
+				totalCounter += timesPresentationFrame;
+
+				animateFrames(activeFrame, 'next', false);
+				setFrameProductsInterval(timeFrameView);
+
+			}, timesPresentationFrame);
+		}
+		else setFrameProductsInterval(timeFrameView);
+	}
+}
+
+function navigateFrames(animationDirection){
+
+	animateFrames(activeFrame, animationDirection, false);
+	stopAnim();
+}
+
+function stopAnim() {
+	if (totalCounter < 30000) totalCounter = 30000;
+	if (totalCounter == 30000) {
+		animateArrows();
+		totalCounter++;
+	}
+}
+
+function animateArrows() {
+
+	if (numFrames != 1) {
+		if (navigation != false) {
+			if (logoLeft == false) id("nav_left").style.display = "block";
+
+			if (adSize == "320x50" || adSize == "468x60" || adSize == "728x90" || adSize == "970x250" || adSize == "1272x328") {
+				id("nav_left").style.left = -100 + "px";
+				id("nav_left").style.width = 48 + "px";
+				morpheus(id("nav_left"), {
+	                left: -20,
+	                duration: 800,
+	                easing: easings.bouncePast,
+	                complete: function () {
+			        	id("nav_left").style.left = 1 + "px";
+			        	id("nav_left").style.width = "auto";
+				    }
+	            });
+			}
+			else { //the rest
+				id("nav_left").style.bottom = -100 + "px";
+				id("nav_left").style.height = 48 + "px";
+				morpheus(id("nav_left"), {
+	                bottom: -20,
+	                duration: 800,
+	                easing: easings.bouncePast,
+	                complete: function () {
+			        	id("nav_left").style.bottom = 1 + "px";
+			        	id("nav_left").style.height = "auto";
+				    }
+	            });
+			}
+		}
+	}
+}
+
+var intervalCountDowns = [];
+function initCountDown() {
+
+	clearInterval(intervalCountDowns[0]);
+	intervalCountDowns.pop();
+
+	var intervalCountDown = setInterval(function() {
+
+		var endDate = new Date(endDates[(activeFrame-1)]);
+		var iniDate = new Date();
+		var timeDiff = Math.abs(endDate.getTime() - iniDate.getTime()) / 1000;
+
+		var day = Math.floor(timeDiff / (24 * 60 * 60)); timeDiff -= day * (24 * 60 * 60);
+		var hrs = Math.floor(timeDiff / (60 * 60)); timeDiff -= hrs * (60 * 60);
+		var min = Math.floor(timeDiff / (60)); timeDiff -= min * (60);
+		var sec = Math.floor(timeDiff);
+
+		if (hrs < 10) hrs = "0" + hrs;
+		if (min < 10) min = "0" + min;
+		if (sec < 10) sec = "0" + sec;
+
+		var productToEndDate = day+"d " + hrs+"h " + min+"m " + sec+"s";
+
+		var allEndDates = document.querySelectorAll(".date");
+		for (var i = 0; i < allEndDates.length; i++) {
+			allEndDates[i].innerHTML = productToEndDate;
+		}
+
+	}, 1000);
+
+	intervalCountDowns.push(intervalCountDown);
+}
+
+function hoverBannerIn() {
+	if (totalCounter >= 30000) {
+		initCountDown();
+	}
+}
+function hoverBannerOut() {
+	if (totalCounter >= 30000) {
+		clearInterval(intervalCountDowns[0]);
+		intervalCountDowns.pop();
+	}
+}
+
+var topImg = -1, bottomImg = -1, processed = false;
+var numFrames = 0;
+var endDates = [];
+
+var loadedJsonObject = {}
+function jsonp(jsonpObject){
+
+    if (id('frames_container')) {
+        id('frames_container').parentNode.removeChild(id('frames_container'));
+    }
+
+    loadedJsonObject = jsonpObject
+
+	//Body color
+	document.body.style.backgroundColor = borderColor;
+
+
+	//Define Wrapper settings
+	var wrapper = document.getElementById("wrapper");
+	wrapper.style.borderColor = borderColor;
+	wrapper.style.backgroundColor = borderColor;
+	wrapper.setAttribute('onmouseover', 'hoverBannerIn()');
+	wrapper.setAttribute('onmouseout', 'hoverBannerOut()');
+
+
+	//Define nav
+	var navLeft = document.getElementById("nav_left");
+	navLeft.style.background = navigationColor;
+	navLeft.style.bottom = 1 + "px";
+
+	var navRight = document.getElementById("nav_right");
+	navRight.style.background = navigationColor;
+	navRight.style.bottom = 1 + "px";
+
+	if (navigation == false) {
+		navLeft.style.display = "none";
+		navRight.style.display = "none";
+	}
+
+
+	//Define logo wrapper
+	var logoWrapper = document.getElementById('logo_wrapper');
+	if (adSize == "320x50" || adSize == "468x60" || adSize == "728x90" || adSize == "970x250" || adSize == "1272x328") {
+		logoWrapper.style.width = logoWidth + "px";
+		logoWrapper.style.height = (adHeight - 2) + "px";
+	}
+	else {
+		logoWrapper.style.width = (adWidth - 2) + "px";
+		logoWrapper.style.height = logoHeight + "px";
+	}
+	logoWrapper.style.backgroundColor = borderColor;
+
+	//Define logo
+	if (adSize == '120x600' || adSize == '160x600' || adSize == '970x250' || adSize == '1272x328' || adSize == '728x90')
+		 var logoURL = 'img/logo_v.png';
+	else var logoURL = 'img/logo_h.png';
+
+	var logo = document.getElementById('logo');
+	logo.style.backgroundImage = "url("+ logoURL +")";
+	logo.style.backgroundColor = borderColor;
+	logo.style.borderColor = borderColor;
+	logo.style.borderWidth = borderSize + "px";
+	logo.style.width = logoWidth + "px";
+	logo.style.height = logoHeight + "px";
+
+	if (logoTop) {
+		logoWrapper.style.top = 1 + "px";
+		logo.style.top = 1 + "px";
+	}
+	else {
+		logoWrapper.style.bottom = 1 + "px";
+		logo.style.bottom = 1 + "px";
+	}
+	if (logoLeft) {
+		logoWrapper.style.left = 1 + "px";
+		logo.style.left = 1 + "px";
+		if (adSize == "320x50" || adSize == "468x60" || adSize == "728x90" || adSize == "970x250" || adSize == "1272x328") document.getElementById("nav_left").style.left = logoWidth + "px";
+	}
+	else {
+		logoWrapper.style.right = 1 + "px";
+		logo.style.right = 1 + "px";
+		if (adSize == "320x50" || adSize == "468x60" || adSize == "728x90" || adSize == "970x250" || adSize == "1272x328") document.getElementById("nav_right").style.right = logoWidth + "px";
+	}
+
+
+	//Define presentation frame
+	var	frame = document.createElement('div');
+    frame.setAttribute("id", "frame_0");
+	var presentation = document.createElement('div');
+    presentation.setAttribute("id", "presentation");
+	if (activeFrame == 0) {
+        frame.setAttribute("class", "frame frame_active");
+    } else {
+        frame.setAttribute("class", "frame frame_hidden");
+    }
+	frame.style.borderWidth = borderSize + "px";
+	frame.style.borderColor = borderColor;
+	frame.style.backgroundColor = borderColor;
+	frame.style.backgroundImage = "url(img/frame_0_"+ adSize +".jpg)";
+	frame.style.width = (adWidth - 2) + "px";
+	frame.style.height = (adHeight - 2) + "px";
+	presentation.style.color = presentationColor;
+	presentation.style.textShadow = presentationShadow;
+	wrapper.appendChild(frame);
+	frame.appendChild(presentation);
+
+
+	//Define product frames container
+	var framesContainer = document.createElement('div');framesContainer.setAttribute("id", "frames_container");
+	wrapper.appendChild(framesContainer);
+
+
+	//Define products section in JSONP
+	window.JSONProducts = jsonpObject.products.product;
+	var products = window.JSONProducts;
+
+	//Loop over products and create a frame with "rows x columns" products
+	var placedProducts = 0;
+	var productInfos = [];
+    var numFrames = 0;
+	for(var key in products) {
+
+		var otherKey = parseInt(key);
+
+		//if we're placing the first product OR we've filled the frame
+		if (placedProducts == 0 || placedProducts % (rows * columns) == 0) {
+			//if we can fill the next farme, construct new frames
+			if (numProducts - placedProducts >= rows * columns) {
+				numFrames++;
+
+				var	frame = document.createElement('div');
+                frame.setAttribute("id", "frame_" + numFrames);
+				frame.setAttribute("class", "frame frame_product");
+				frame.style.borderWidth = borderSize + "px";
+				frame.style.borderColor = borderColor;
+				frame.style.backgroundColor = borderColor;
+
+				framesContainer.appendChild(frame);
+
+			}
+			//if we can't fill the next frame, finish the loop
+			else break;
+		}
+
+		//define the product ID
+		var productId = products[key].id;
+		//define the elements
+		var productWrapper = document.createElement('div');productWrapper.setAttribute("id", "product_wrapper_" + key);productWrapper.setAttribute("class", "product_wrapper");
+			var	productInfo = document.createElement('div');productInfo.setAttribute("id", "product_info_" + key);productInfo.setAttribute("class", "product");
+				var	title = document.createElement('div');title.setAttribute("id", "title_" + key);title.setAttribute("class", "title");
+				var	price = document.createElement('div');price.setAttribute("id", "price_" + key);price.setAttribute("class", "price");
+				var	cta = document.createElement('span');cta.setAttribute("id", "cta_" + key);cta.setAttribute("class", "cta");
+				var date = document.createElement('div');date.setAttribute("id", "date_" + key);date.setAttribute("class","date");
+				var sticker = document.createElement('div');sticker.setAttribute("id", "sticker_" + key);sticker.setAttribute("class","sticker");var disclaimer = document.createElement('div');disclaimer.setAttribute("id", "disclaimer_" + key);disclaimer.setAttribute("class","disclaimer");
+				var disclaimer = document.createElement('div');disclaimer.setAttribute("id", "disclaimer_" + key);disclaimer.setAttribute("class","disclaimer");
+
+		//special language classes
+		if (defaultLanguage == 'cn' || defaultLanguage == 'jp') {
+			price.className += ' kanji';
+			cta.className += ' kanji';
+		}
+
+		//create document fragments
+		var docFragFrame = document.createDocumentFragment();
+		var docFragProductWrapper = document.createDocumentFragment();
+		var docFragProductInfo = document.createDocumentFragment();
+
+
+		//append the childs
+		docFragFrame.appendChild(productWrapper);
+			docFragProductWrapper.appendChild(productInfo);
+				docFragProductInfo.appendChild(title);
+				docFragProductInfo.appendChild(price);
+				docFragProductInfo.appendChild(cta);
+				docFragProductInfo.appendChild(sticker);
+				docFragProductInfo.appendChild(date);
+				docFragProductInfo.appendChild(disclaimer);
+
+
+		//get the containers and append the document fragments
+		frame = document.getElementById('frame_' + numFrames);
+			frame.appendChild(docFragFrame);
+		productWrapper = document.getElementById('product_wrapper_' + key);
+			productWrapper.appendChild(docFragProductWrapper);
+		productInfo = document.getElementById('product_info_' + key);
+			productInfo.appendChild(docFragProductInfo);
+
+
+		// JSONP CALL
+		//define the correct language section based on setLanguage
+		//let's check if we only have one product in the feed
+		if (products[key].content == undefined) {
+			var jsonpSection = products.content.optional.sections[setLanguage];
+			if(jsonpSection === undefined){
+				jsonpSection = products.content.optional.sections[defaultLanguage];
+			}
+		}else {
+			var jsonpSection = products[key].content.optional.sections[setLanguage];
+			//if the section does not exist, fallback to the defaultLanguage
+			if(jsonpSection === undefined){
+				jsonpSection = products[key].content.optional.sections[defaultLanguage];
+			}
+		}
+
+
+
+		//put dynamic content in variables
+
+		//define presentation
+		if (key == 1) {
+			if(jsonpSection.slogan != undefined && typeof jsonpSection.slogan == 'string') {
+				var productPresentation = jsonpSection.slogan;
+			} else {
+				var productPresentation = "Â¿A dÃ³nde te llevamos?";
+			}
+		}
+
+		//define title
+		if(jsonpSection.title != undefined && typeof jsonpSection.title == 'string') {
+			var productTitle = jsonpSection.title;
+			if (adSize == "120x600" || adSize == "160x600") productTitle = productTitle.replace(" - ","<br/><br/>");
+			else productTitle = productTitle.replace(" - ","<br/>");
+		} else {
+			var productTitle = "";
+		}
+
+		//define price
+		if(jsonpSection.price != undefined && typeof jsonpSection.price == 'string') {
+			var productPrice = jsonpSection.price;
+			productPrice = productPrice;
+		} else {
+			var productPrice = "";
+		}
+		//productPrice = "12.000 COD"
+
+		//define cta
+		if(jsonpSection.ctatext != undefined && typeof jsonpSection.ctatext == 'string') {
+			var productCta = jsonpSection.ctatext;
+		} else {
+			var productCta = "";
+		}
+
+		//define clickurl
+		clickTag = decodeURIComponent(clickTag);
+		if(jsonpSection.clickurl != undefined && typeof jsonpSection.clickurl == 'string') {
+			var productClickUrl = clickTag + jsonpSection.clickurl;
+		} else {
+			var productClickUrl = clickTag;
+		}
+		productClickUrl = decodeURIComponent(productClickUrl);
+
+		//define disclaimer
+		if(jsonpSection.disclaimer != undefined && typeof jsonpSection.disclaimer == 'string') {
+			var productDisclaimer = jsonpSection.disclaimer;
+		} else {
+			var productDisclaimer = "";
+		}
+
+		//define disclaimer_promo
+		if(jsonpSection.disclaimer_promo != undefined && typeof jsonpSection.disclaimer_promo == 'string') {
+			var productDisclaimer_promo = jsonpSection.disclaimer_promo;
+		} else {
+			var productDisclaimer_promo = "";
+		}
+		//productDisclaimer_promo = "Voos a Europa a partir de 2,326.87 BRL";
+		if (productDisclaimer_promo != "") productDisclaimer = productDisclaimer_promo;
+
+		//define stickertext
+		if(jsonpSection.stickertext != undefined && typeof jsonpSection.stickertext == 'string') {
+			var productStickerText = jsonpSection.stickertext;
+		} else {
+			var productStickerText = "";
+		}
+		//productStickerText = "Promocion Especial";
+
+		//define endDate
+		if(jsonpSection.enddate != undefined && typeof jsonpSection.enddate == 'string') {
+			var productEndDate = jsonpSection.enddate;
+		} else {
+			var productEndDate = "";
+		}
+		//productEndDate = "2015/03/03 00:00:00";
+		endDates.push(productEndDate);
+
+		var productToEndDate;
+		//custom feed arrangements
+		if (productEndDate != "") {
+			var endDate = new Date(productEndDate);
+			var iniDate = new Date();
+			var timeDiff = Math.abs(endDate.getTime() - iniDate.getTime()) / 1000;
+
+			var day = Math.floor(timeDiff / (24 * 60 * 60)); timeDiff -= day * (24 * 60 * 60);
+			var hrs = Math.floor(timeDiff / (60 * 60)); timeDiff -= hrs * (60 * 60);
+			var min = Math.floor(timeDiff / (60)); timeDiff -= min * (60);
+			var sec = Math.floor(timeDiff);
+
+			if (hrs < 10) hrs = "0" + hrs;
+			if (min < 10) min = "0" + min;
+			if (sec < 10) sec = "0" + sec;
+
+			productToEndDate = day+"d " + hrs+"h " + min+"m " + sec+"s";
+		}
+
+
+
+		//get the elements
+		title = document.getElementById('title_' + key);
+		price = document.getElementById('price_' + key);
+		cta = document.getElementById('cta_' + key);
+		disclaimer = document.getElementById('disclaimer_' + key);
+
+		//add dynamic content to corresponding HTML fields
+		if (key == 1) presentation.innerHTML = productPresentation;
+		title.innerHTML = productTitle;
+		price.innerHTML = productPrice;
+		cta.innerHTML = productCta;
+		date.innerHTML = productToEndDate;
+		sticker.innerHTML = productStickerText;
+		disclaimer.innerHTML = productDisclaimer;
+
+
+		//custom styles
+
+		function arrangeSticker(sticker, title, price, cta) {
+			var stickerInt = setInterval(function() {
+				var stickerH = (sticker.offsetHeight) / 2;
+				if (stickerH != 0) {
+					clearInterval(stickerInt);
+					if (ie <= 8 && ie != false) {
+						var titleStyle = title.currentStyle;
+						var priceStyle = price.currentStyle;
+						var ctaStyle = cta.currentStyle;
+					}
+					else {
+						var titleStyle = getComputedStyle(title);
+						var priceStyle = getComputedStyle(price);
+						var ctaStyle = getComputedStyle(cta);
+					}
+					title.style.top = (parseInt(titleStyle.top) - stickerH) + "px";
+					price.style.top = (parseInt(priceStyle.top) - stickerH) + "px";
+					cta.style.top = (parseInt(ctaStyle.top) - stickerH) + "px";
+				}
+			}, 10);
+		}
+
+
+		cta.style.color = ctaTextColor;
+		cta.style.background = ctaBackColor;
+		sticker.style.backgroundImage = 'url("./img/sticker.png")';
+		if (productEndDate == "") date.style.visibility = "hidden";
+		if (productStickerText == "") {
+			sticker.style.visibility = "hidden";
+			if (adHeight == "600") {
+				arrangeSticker(sticker, title, price, cta)
+			}
+		}
+
+
+		//append clickout to the logo
+		if (key == 1) {
+			document.getElementById('logo_wrapper').setAttribute('onclick', 'javascript:window.open("' + productClickUrl + '", "_blank");');
+			document.getElementById('frame_0').setAttribute('onclick', 'javascript:window.open("' + productClickUrl + '", "_blank");');
+		}
+		//append clickout to all items
+		document.getElementById('product_wrapper_' + key).setAttribute('onclick', 'javascript:window.open("' + productClickUrl + '", "_blank");');
+
+		//increase number of products placed
+		placedProducts++;
+
+		//image catcher
+		if (scrollAnimation && (ie > 8 || ie == false) && (adSize == "320x50" || adSize == "468x60" || adSize == "728x90" || adSize == "970x250" || adSize == "1272x328")) getNonWhiteSpace(productImgSrc, key);
+	}
+
+
+	//Duplicate first product frame for infinite carrousell
+	var extraFrame = document.getElementById("frame_1").cloneNode(true);
+	extraFrame.setAttribute("id", "frame_3");
+	framesContainer.appendChild(extraFrame);
+	if (adHeight == "600") {
+		arrangeSticker(extraFrame.getElementsByClassName('sticker')[0],extraFrame.getElementsByClassName('title')[0],extraFrame.getElementsByClassName('price')[0],extraFrame.getElementsByClassName('cta')[0]);
+	}
+
+
+	//Adapts frame dimensions according to the logo settings
+	var allFrames = document.querySelectorAll(".frame.frame_product");
+	for (var i = 0; i < allFrames.length; i++) {
+	    if (adSize == "320x50" || adSize == "468x60" || adSize == "728x90" || adSize == "970x250" || adSize == "1272x328") {
+	    	allFrames[i].style.width = (adWidth - logoWidth - 2) + "px";
+	    	allFrames[i].style.height = (adHeight - 2) + "px";
+	    	//if (logoLeft) allFrames[i].style.marginLeft = logoWidth + "px";
+
+	    	//define frameContainer dimensions
+	    	framesContainer.style.width = (adWidth - logoWidth - 2) * (numProducts + 1) + "px";
+	    	framesContainer.style.height = (adHeight - 2) + "px"
+	    }
+		else {
+			allFrames[i].style.width = (adWidth - 2) + "px";
+			allFrames[i].style.height = (adHeight - logoHeight - 2) + "px";
+			//if (logoTop) allFrames[i].style.marginTop = logoHeight + "px";
+
+			//define frameContainer dimensions
+			framesContainer.style.width = (adWidth - 2) + "px";
+	    	framesContainer.style.height = (adHeight - logoHeight - 2) * (numProducts + 1) + "px"
+	    	framesContainer.style.paddingTop = logoHeight + "px";
+		}
+	}
+	//Adapts product dimensions according to the logo settings and the number of products per frame
+	var allProducts = document.querySelectorAll(".product_wrapper");
+	for (var i = 0; i < allProducts.length; i++) {
+	    if (adSize == "320x50" || adSize == "468x60" || adSize == "728x90" || adSize == "970x250" || adSize == "1272x328") {
+	    	allProducts[i].style.width = ((adWidth - logoWidth - borderSize * 2 - 2) / columns) + "px";
+	    	allProducts[i].style.height = ((adHeight - borderSize * 2 - 2) / rows) + "px";
+	    }
+		else {
+			allProducts[i].style.width = ((adWidth - borderSize * 2 - 2) / columns) + "px";
+			allProducts[i].style.height = ((adHeight - logoHeight - borderSize * 2 - 2) / rows) + "px";
+		}
+		allProducts[i].style.borderWidth = borderSize + "px";
+		allProducts[i].style.borderColor = borderColor;
+	}
+
+
+	//resize texts
+	var presentation = document.getElementById("presentation");
+	presentation.style.height = (presentationMaxFontSize * presentationMaxLines * 1.20) + "px";
+	fitText(presentation, 8, 90);
+
+	var allTitles = document.querySelectorAll(".title");
+	for (var i = 0; i < allTitles.length; i++) {
+		fitText(allTitles[i], 8, 90);
+	}
+
+	var allPrices = document.querySelectorAll(".price");
+	for (var i = 0; i < allPrices.length; i++) {
+		fitText(allPrices[i], 8, 90);
+	}
+
+	var allDisclaimers = document.querySelectorAll(".disclaimer");
+	for (var i = 0; i < allDisclaimers.length; i++) {
+		fitText(allDisclaimers[i], 8, 90);
+	}
+
+	var allDates = document.querySelectorAll(".date");
+	for (var i = 0; i < allDates.length; i++) {
+		fitText(allDates[i], 8, 90);
+	}
+
+	var allStickers = document.querySelectorAll(".sticker");
+	for (var i = 0; i < allStickers.length; i++) {
+		fitText(allStickers[i], 8, 90);
+	}
+
+	var allCtas = document.querySelectorAll(".cta");
+	for (var i = 0; i < allCtas.length; i++) {
+		fitText(allCtas[i], 8, 90);
+	}
+
+	resizeImages();
+	initAnimation();
+}
+
+//start the shabang!
+defineLanguage();
+
+//window resize for dynamic ad loading
+function silentLog(text) {
+    var logger = document.querySelector('div.logger');
+    if (!logger) {
+        var n = document.createElement('div');
+        n.className = 'logger';
+        n.style.display = 'none';
+        document.querySelector('body').appendChild(n);
+        logger = document.querySelector('div.logger');
+    }
+    logger.textContent = logger.textContent + text + '\n';
+    // console.log('Log:', text)
+}
+
+function debounce(func, wait, immediate) {
+	var timeout;
+	return function() {
+		var context = this, args = arguments;
+		var later = function() {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+		var callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
+};
+
+var efficientFn = debounce(function() {
+
+    silentLog('resized');
+
+    location.reload()
+
+    // if (tl) {
+    //     silentLog('removing timeline');
+    //     tl.stop();
+    // }
+    //
+    // totalCounter = 0;
+    //
+    // var oldFrames = document.querySelectorAll('.frame');
+    // if (oldFrames.length > 0) {
+    //     silentLog('removing old frames');
+    //     for (var i = 0; i < oldFrames.length; i++) {
+    //         var el = oldFrames[i];
+    //         el.parentNode.removeChild(el);
+    //     }
+    // }
+    //
+	// jsonp(loadedJsonObject)
+}, 250);
+
+silentLog('add resize listener');
+window.addEventListener('resize', efficientFn);
+1g§Û      ]ÚÍ]ÚÍ@…Ñ6]Óñ   B    :https://cdn.254a.com/images/hosted/iberia/201701/v8/js/narwhal.js necko:classified 1 strongly-framed 1 security-info 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 request-method GET response-head HTTP/1.1 200 OK
+Content-Type: application/javascript
+Content-Length: 61191
+Last-Modified: Tue, 05 Jun 2018 08:29:15 GMT
+x-amz-meta-s3cmd-attrs: uid:9047/gname:yd-rtb-images/uname:yd-rtb-images/gid:9060/mode:33204/mtime:1528185634/atime:1528185634/ctime:1528185634
+Accept-Ranges: bytes
+Server: AmazonS3
+Date: Thu, 27 Jun 2019 13:50:26 GMT
+ETag: "bf97dae3365ab0d625709120ca04fd2d"
+Age: 16727
+X-Cache: Hit from cloudfront
+Via: 1.1 d3e9860c1306f02cb57e75ed57120ee4.cloudfront.net (CloudFront)
+X-Amz-Cf-Pop: LAX3-C3
+X-Amz-Cf-Id: JxQRuYu7K6-cSJh8VnRiUmysIwdW-1DcTRD1mSgQfAEGZnd20PxQUA==
+ original-response-headers Content-Type: application/javascript
+Content-Length: 61191
+Connection: keep-alive
+Last-Modified: Tue, 05 Jun 2018 08:29:15 GMT
+x-amz-meta-s3cmd-attrs: uid:9047/gname:yd-rtb-images/uname:yd-rtb-images/gid:9060/mode:33204/mtime:1528185634/atime:1528185634/ctime:1528185634
+Accept-Ranges: bytes
+Server: AmazonS3
+Date: Thu, 27 Jun 2019 13:50:26 GMT
+ETag: "bf97dae3365ab0d625709120ca04fd2d"
+Age: 16727
+X-Cache: Hit from cloudfront
+Via: 1.1 d3e9860c1306f02cb57e75ed57120ee4.cloudfront.net (CloudFront)
+X-Amz-Cf-Pop: LAX3-C3
+X-Amz-Cf-Id: JxQRuYu7K6-cSJh8VnRiUmysIwdW-1DcTRD1mSgQfAEGZnd20PxQUA==
+ uncompressed-len 0 net-response-time-onstart 139 net-response-time-onstop 246   ï
